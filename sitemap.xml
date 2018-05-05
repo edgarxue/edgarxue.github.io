@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://edgarxue.github.io/files/git_clone_debug/</loc>
+    <lastmod>2018-05-04T16:11:57+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://edgarxue.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edgarxue.github.io/tags/centos/</loc>
+    <lastmod>2018-05-04T16:11:57+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edgarxue.github.io/</loc>
+    <lastmod>2018-05-04T16:11:57+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edgarxue.github.io/files/</loc>
+    <lastmod>2018-05-04T16:11:57+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edgarxue.github.io/tags/git/</loc>
+    <lastmod>2018-05-04T16:11:57+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edgarxue.github.io/tags/linux/</loc>
+    <lastmod>2018-05-04T16:11:57+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edgarxue.github.io/categories/ops/</loc>
+    <lastmod>2018-05-04T16:11:57+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edgarxue.github.io/tags/</loc>
+    <lastmod>2018-05-04T16:11:57+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="git clone 出现error:  while accessing https…… fatal: HTTP request failed的思路及解决" />
+<meta property="og:description" content="环境：Centos 6.5
+git版本： 1.7.1
+ 瞎逛github的时候发现cloudflare有个alertmanager的皮unsee，就准备搞下来试试，竟然遇到如下错误：
+# git clone -vvvvv https://github.com/cloudflare/unsee.git Initialized empty Git repository in /home/wenba/go/unsee/.git/ error: while accessing https://github.com/cloudflare/unsee.git/info/refs fatal: HTTP request failed  赶紧搜了一下解决办法，网上一众大神都说要升级git……简直💊啊，如此伤筋动骨，我表示不服……
+那就一步一步的来解决吧！
+首先看验证下是不是网络问题吧 # wget https://github.com/cloudflare/unsee.git --2018-05-04 11:17:05-- https://github.com/cloudflare/unsee.git Resolving github.com... 13.229.188.59, 13.250.177.223, 52.74.223.119 Connecting to github.com|13.229.188.59|:443... connected. HTTP request sent, awaiting response... 301 Moved Permanently Location: https://github.com/cloudflare/unsee [following] --2018-05-04 11:17:06-- https://github.com/cloudflare/unsee Reusing existing connection to github.com:443. HTTP request sent, awaiting response... 200 OK ……  网络可达，排除墙的问题。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://edgarxue.github.io/files/git_clone_debug/" />
+
+
+
+<meta property="article:published_time" content="2018-05-04T16:11:57&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-05-04T16:11:57&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="git clone 出现error:  while accessing https…… fatal: HTTP request failed的思路及解决"/>
+<meta name="twitter:description" content="环境：Centos 6.5
+git版本： 1.7.1
+ 瞎逛github的时候发现cloudflare有个alertmanager的皮unsee，就准备搞下来试试，竟然遇到如下错误：
+# git clone -vvvvv https://github.com/cloudflare/unsee.git Initialized empty Git repository in /home/wenba/go/unsee/.git/ error: while accessing https://github.com/cloudflare/unsee.git/info/refs fatal: HTTP request failed  赶紧搜了一下解决办法，网上一众大神都说要升级git……简直💊啊，如此伤筋动骨，我表示不服……
+那就一步一步的来解决吧！
+首先看验证下是不是网络问题吧 # wget https://github.com/cloudflare/unsee.git --2018-05-04 11:17:05-- https://github.com/cloudflare/unsee.git Resolving github.com... 13.229.188.59, 13.250.177.223, 52.74.223.119 Connecting to github.com|13.229.188.59|:443... connected. HTTP request sent, awaiting response... 301 Moved Permanently Location: https://github.com/cloudflare/unsee [following] --2018-05-04 11:17:06-- https://github.com/cloudflare/unsee Reusing existing connection to github.com:443. HTTP request sent, awaiting response... 200 OK ……  网络可达，排除墙的问题。"/>
+
+
+    <link rel="canonical" href="http://edgarxue.github.io/files/git_clone_debug/">
+
+    <title>
+      
+        git clone 出现error:  while accessing https…… fatal: HTTP request failed的思路及解决 | Edgarxue&#39;s Site
+      
+    </title>
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link href="http://edgarxue.github.io/css/style.css" rel="stylesheet">
+
+    
+
+    
+
+    
+  </head>
+  <body>
+    
+      <header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="/">
+            <img src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+Edgarxue&#39;s Site
+
+
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+                
+                
+                <li class="nav-item ">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                
+                <li class="nav-item ">
+                    <a class="nav-link" href="/about/">About</a>
+                </li>
+                
+            </ul>
+            
+        </div>
+    </nav>
+</header>
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main">
+
+          
+
+<article class="blog-post">
+    <header>
+        <h2 class="blog-post-title">
+            <a class="text-dark" href="/files/git_clone_debug/">git clone 出现error:  while accessing https…… fatal: HTTP request failed的思路及解决</a>
+        </h2>
+        
+
+
+<div class="blog-post-date text-secondary">
+    
+        May 4, 2018
+    
+    
+</div>
+        
+<div class="blog-post-tags text-secondary">
+    <strong>标签:</strong>
+    
+        <a class="badge badge-primary" href="/tags/git">Git</a>
+    
+        <a class="badge badge-primary" href="/tags/centos">Centos</a>
+    
+        <a class="badge badge-primary" href="/tags/linux">Linux</a>
+    
+</div>
+
+        
+<div class="blog-post-categories text-secondary">
+    <strong>分类:</strong>
+    
+        <a class="badge badge-primary" href="/categories/ops">Ops</a>
+    
+</div>
+
+    </header>
+    <hr>
+    
+
+<blockquote>
+<p>环境：Centos 6.5</p>
+
+<p>git版本： 1.7.1</p>
+</blockquote>
+
+<hr />
+
+<p>瞎逛github的时候发现<a href="https://github.com/cloudflare">cloudflare</a>有个alertmanager的皮<strong>unsee</strong>，就准备搞下来试试，竟然遇到如下错误：</p>
+
+<pre><code class="language-shell"># git clone -vvvvv https://github.com/cloudflare/unsee.git
+Initialized empty Git repository in /home/wenba/go/unsee/.git/
+error:  while accessing https://github.com/cloudflare/unsee.git/info/refs
+
+fatal: HTTP request failed
+</code></pre>
+
+<p>赶紧搜了一下解决办法，网上一众大神都说要升级git……简直💊啊，如此伤筋动骨，我表示不服……</p>
+
+<p>那就一步一步的来解决吧！</p>
+
+<hr />
+
+<h3 id="首先看验证下是不是网络问题吧">首先看验证下是不是网络问题吧</h3>
+
+<pre><code class="language-shell"> # wget https://github.com/cloudflare/unsee.git
+--2018-05-04 11:17:05--  https://github.com/cloudflare/unsee.git
+
+Resolving github.com... 13.229.188.59, 13.250.177.223, 52.74.223.119
+
+Connecting to github.com|13.229.188.59|:443... connected.
+
+HTTP request sent, awaiting response... 301 Moved Permanently
+
+Location: https://github.com/cloudflare/unsee [following]
+
+--2018-05-04 11:17:06--  https://github.com/cloudflare/unsee
+
+Reusing existing connection to github.com:443.
+
+HTTP request sent, awaiting response... 200 OK
+……
+</code></pre>
+
+<p>网络可达，排除墙的问题。</p>
+
+<hr />
+
+<h3 id="关闭http-sslverify试下">关闭http.sslVerify试下</h3>
+
+<pre><code class="language-shell"># git config --system http.sslVerify false
+</code></pre>
+
+<p>再试，问题依旧。</p>
+
+<h4 id="检查git-clone依赖包是否齐全">检查git clone依赖包是否齐全</h4>
+
+<pre><code class="language-bash"># yum install curl-devel zlib-devel -y
+</code></pre>
+
+<p>再试，问题依旧。</p>
+
+<p><strong><em>那么，到这里，就基本可以排除网络和git的问题了！</em></strong></p>
+
+<h3 id="问题在哪里呢"><em>问题在哪里呢？</em></h3>
+
+<p>不妨回过头来思考下https，是不是通信组件有问题呢？</p>
+
+<p>nss？openssl？ca-certificates？</p>
+
+<p>那就先检查版本和安装情况吧</p>
+
+<pre><code class="language-bash">yum list|grep -E &quot;^openssl\.x86|^nss\.x86|ca-certificates&quot;
+ca-certificates.noarch                      2013.1.94-65.0.el6           @anaconda-CentOS-201311272149.x86_64/6.5
+nss.x86_64                                  3.15.1-15.el6                @anaconda-CentOS-201311272149.x86_64/6.5
+openssl.x86_64                              1.0.1e-30.el6_6.5            @updates
+ca-certificates.noarch                      2017.2.14-65.0.1.el6_9       updates
+nss.x86_64                                  3.28.4-4.el6_9               updates
+openssl.x86_64                              1.0.1e-57.el6                base
+</code></pre>
+
+<p>既然如此，升级吧</p>
+
+<pre><code class="language-bash">yum update ca-certificates nss openssl openssl-devel -y
+</code></pre>
+
+<p>再试一下</p>
+
+<pre><code class="language-bash"># git clone https://github.com/cloudflare/unsee.git
+Initialized empty Git repository in /data/devops/unsee/.git/
+remote: Counting objects: 5469, done.
+remote: Compressing objects: 100% (58/58), done
+……
+</code></pre>
+
+<h4 id="解决"><strong>解决!</strong></h4>
+
+
+    
+
+    
+
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>最新</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="/files/git_clone_debug/">git clone 出现error:  while accessing https…… fatal: HTTP request failed的思路及解决</a>
+        </li>
+        
+        <li>
+            <a href="/files/">Files</a>
+        </li>
+        
+    </ol>
+</section>
+
+    
+    
+        <section>
+    
+        
+        <h4>分类</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/categories/ops">ops</a>
+            
+        </p>
+        
+    
+        
+        <h4>标签</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/tags/centos">centos</a>
+            
+            <a class="badge badge-primary" href="/tags/git">git</a>
+            
+            <a class="badge badge-primary" href="/tags/linux">linux</a>
+            
+        </p>
+        
+    
+</section>
+    
+</aside>
+
+      </div>
+    </div>
+    
+
+    
+      <footer class="blog-footer w-100">
+    <nav class="navbar navbar-light bg-light">
+        <p class="w-100 text-center"><a href="#">Top</a></p>
+    </nav>
+</footer>
+
+    
+
+    
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
