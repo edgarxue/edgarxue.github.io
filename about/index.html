@@ -5,14 +5,17 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<meta property="og:title" content="Linux" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://edgarxue.github.io/tags/linux/" />
+<meta property="og:title" content="关于我" />
+<meta property="og:description" content="一个既不激进也不保守的老运维，喜欢新技术。 在系统运维、自动化运维有点小心的。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://edgarxue.github.io/about/" />
 
 
 
-<meta property="og:updated_time" content="2018-05-04T16:11:57&#43;08:00"/>
+<meta property="article:published_time" content="2018-05-04T16:07:33&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-05-04T16:07:33&#43;08:00"/>
+
 
 
 
@@ -24,16 +27,16 @@
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Linux"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="关于我"/>
+<meta name="twitter:description" content="一个既不激进也不保守的老运维，喜欢新技术。 在系统运维、自动化运维有点小心的。"/>
 
 
 
-    <link rel="canonical" href="http://edgarxue.github.io/tags/linux/">
+    <link rel="canonical" href="http://edgarxue.github.io/about/">
 
     <title>
       
-        Linux | Edgarxue&#39;s Site
+        关于我 | Edgarxue&#39;s Site
       
     </title>
 
@@ -42,8 +45,6 @@
 
     <link href="http://edgarxue.github.io/css/style.css" rel="stylesheet">
 
-    
-    <link href="http://edgarxue.github.io/tags/linux/index.xml" rel="alternate" type="application/rss+xml" title="Edgarxue&#39;s Site" />
     
     
     
@@ -71,7 +72,7 @@ Edgarxue&#39;s Site
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 
-                <li class="nav-item ">
+                <li class="nav-item active">
                     <a class="nav-link" href="/about/">About</a>
                 </li>
                 
@@ -90,16 +91,11 @@ Edgarxue&#39;s Site
 
           
 
-
-
-
+<header>
+    <h2 class="blog-post-title">
+        <a class="text-dark" href="/about/">关于我</a>
+    </h2>
     
-        <article class="blog-post">
-    <header>
-        <h2 class="blog-post-title">
-            <a class="text-dark" href="/files/git_clone_debug/">git clone 出现error:  while accessing https…… fatal: HTTP request failed的思路及解决</a>
-        </h2>
-        
 
 
 <div class="blog-post-date text-secondary">
@@ -109,42 +105,21 @@ Edgarxue&#39;s Site
     
 </div>
 
-        
-<div class="blog-post-tags text-secondary">
-    <strong>Tags:</strong>
     
-        <a class="badge badge-primary" href="/tags/git">Git</a>
     
-        <a class="badge badge-primary" href="/tags/centos">CentOS</a>
-    
-        <a class="badge badge-primary" href="/tags/linux">Linux</a>
-    
-</div>
+    <hr>
+</header>
+<article class="blog-post">
+    <p>一个既不激进也不保守的老运维，喜欢新技术。
+ 在系统运维、自动化运维有点小心的。</p>
 
-        
-<div class="blog-post-categories text-secondary">
-    <strong>Categories:</strong>
-    
-        <a class="badge badge-primary" href="/categories/ops">Ops</a>
-    
-</div>
 
-    </header>
-    环境：Centos 6.5
-git版本： 1.7.1
- 瞎逛github的时候发现cloudflare有个alertmanager的皮unsee，就准备搞下来试试，竟然遇到如下错误：
-# git clone -vvvvv https://github.com/cloudflare/unsee.git Initialized empty Git repository in /home/wenba/go/unsee/.git/ error: while accessing https://github.com/cloudflare/unsee.git/info/refs fatal: HTTP request failed  赶紧搜了一下解决办法，网上一众大神都说要升级git……简直💊啊，如此伤筋动骨，我表示不服……
-那就一步一步的来解决吧！
-首先看验证下是不是网络问题吧 # wget https://github.com/cloudflare/unsee.git --2018-05-04 11:17:05-- https://github.com/cloudflare/unsee.git Resolving github.com... 13.229.188.59, 13.250.177.223, 52.74.223.119 Connecting to github.com|13.229.188.59|:443... connected. HTTP request sent, awaiting response... 301 Moved Permanently Location: https://github.com/cloudflare/unsee [following] --2018-05-04 11:17:06-- https://github.com/cloudflare/unsee Reusing existing connection to github.com:443. HTTP request sent, awaiting response... 200 OK ……  网络可达，排除墙的问题。
-    <p></p>
-    <a href="/files/git_clone_debug/">Read More →</a>
+    
+
+    
+
+
 </article>
-    
-
-
-
-
-
 
 
 

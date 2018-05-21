@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
-	<meta name="generator" content="Hugo 0.40.2" />
+	<meta name="generator" content="Hugo 0.40.3" />
     <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <meta property="og:title" content="Edgarxue&#39;s Site" />
@@ -12,7 +13,7 @@
 
 
 
-<meta property="og:updated_time" content="2018-05-04T16:11:57&#43;08:00"/>
+<meta property="og:updated_time" content="2018-05-16T14:27:36&#43;08:00"/>
 
 
 
@@ -28,6 +29,7 @@
 <meta name="twitter:description" content=""/>
 
 
+
     <link rel="canonical" href="http://edgarxue.github.io/">
 
     <title>
@@ -37,16 +39,14 @@
     </title>
 
     
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
     <link href="http://edgarxue.github.io/css/style.css" rel="stylesheet">
 
     
     <link href="http://edgarxue.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Edgarxue&#39;s Site" />
     
-
     
-
     
   </head>
   <body>
@@ -81,6 +81,7 @@ Edgarxue&#39;s Site
         </div>
     </nav>
 </header>
+
     
 
     
@@ -90,6 +91,95 @@ Edgarxue&#39;s Site
 
           
 
+
+
+
+    
+        <article class="blog-post">
+    <header>
+        <h2 class="blog-post-title">
+            <a class="text-dark" href="/files/phpfpm/">自定义编译安装Php-fpm</a>
+        </h2>
+        
+
+
+<div class="blog-post-date text-secondary">
+    
+        May 16, 2018
+    
+    
+</div>
+
+        
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="badge badge-primary" href="/tags/php-fpm">php-fpm</a>
+    
+        <a class="badge badge-primary" href="/tags/centos">CentOS</a>
+    
+</div>
+
+        
+<div class="blog-post-categories text-secondary">
+    <strong>Categories:</strong>
+    
+        <a class="badge badge-primary" href="/categories/ops">Ops</a>
+    
+</div>
+
+    </header>
+    说明  基本环境为CentOS 7 编译后php-fpm由systemd管理 配置文件目录设置为安装目录下的etc  自定义编译安装php-fpm 下载想要安装的php版本 将脚本保存到和php下载包同一目录
+EX: 保存脚本为php-fpm_install.sh bash php-fpm_install.sh php.version /path/to/install  脚本 #!/bin/bash # 安装依赖包 yum -y install libjpeg libjpeg-devel libpng libpng-devel libXpm libXpm-devel freetype freetype-devel zlib zlib-devel bzip2 bzip2-devel libcurl curl-devel libmcrypt libmcrypt-devel mhash-devel libxml2 libxml2-devel openssl openssl-devel libtiff libtiff-devel gd gd-devel # configure /usr/bin/tar -xf $1.tar.gz cd $1 ./configure --prefix=$2 --with-mysql=mysqlnd --with-pdo-mysql=mysqlnd --with-gd --with-mysqli=mysqlnd --with-openssl --with-bz2 --enable-mbstring --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-curl --with-libxml-dir=/usr --with-mcrypt=/usr/local/include --with-mhash=/usr/local/include --enable-xml --enable-sockets --enable-fpm --enable-zip --enable-soap --with-mcrypt --with-config-file-path=$2/etc --with-config-file-scan-dir=$2/etc/php.
+    <p></p>
+    <a href="/files/phpfpm/">Read More →</a>
+</article>
+    
+
+
+
+    
+        <article class="blog-post">
+    <header>
+        <h2 class="blog-post-title">
+            <a class="text-dark" href="/files/nginx-install/">Nginx编译安装脚本</a>
+        </h2>
+        
+
+
+<div class="blog-post-date text-secondary">
+    
+        May 15, 2018
+    
+    
+</div>
+
+        
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="badge badge-primary" href="/tags/nginx">Nginx</a>
+    
+        <a class="badge badge-primary" href="/tags/centos">CentOS</a>
+    
+</div>
+
+        
+<div class="blog-post-categories text-secondary">
+    <strong>Categories:</strong>
+    
+        <a class="badge badge-primary" href="/categories/ops">Ops</a>
+    
+</div>
+
+    </header>
+    系统版本：CentOS Linux release 7.4.1708 (Core)
+ 参数说明 $1 : nginx版本号 $2 : 安装路径 $3 : 日志路径  脚本 鉴于Centos 7已经在不使用SysV, 该脚本使用systemd管理nginx
+#!/bin/bash # # author：edgarxue # 安装依赖包 yum -y install gcc openssl-devel pcre-devel zlib-devel # 准备文件、目录 /usr/bin/mkdir -p $2/tmp/nginx/ touch $3/error.log touch $3/access.log # 解压 /usr/bin/tar -xf $1.tar.gz # 开始安装 cd $1 ./configure --prefix=$2 --sbin-path=/usr/sbin/nginx --conf-path=$2/conf/nginx.conf --error-log-path=$3/error.log --http-log-path=$3/access.log --pid-path=/run/nginx.pid --lock-path=/var/lock/nginx.lock --user=nobody --group=nobody --with-pcre --with-http_ssl_module --with-http_flv_module --with-http_stub_status_module --with-http_gzip_static_module --http-client-body-temp-path=$2/tmp/nginx/client/ --http-proxy-temp-path=$2/tmp/nginx/proxy/ --http-fastcgi-temp-path=$2/tmp/nginx/fcgi/ --http-uwsgi-temp-path=$2/tmp/nginx/uwsgi --http-scgi-temp-path=$2/tmp/nginx/scgi make &amp;&amp; make install # 创建配置管理文件 cat &gt;&gt; /lib/systemd/system/nginx.
+    <p></p>
+    <a href="/files/nginx-install/">Read More →</a>
+</article>
+    
 
 
 
@@ -108,13 +198,14 @@ Edgarxue&#39;s Site
     
     
 </div>
+
         
 <div class="blog-post-tags text-secondary">
-    <strong>标签:</strong>
+    <strong>Tags:</strong>
     
         <a class="badge badge-primary" href="/tags/git">Git</a>
     
-        <a class="badge badge-primary" href="/tags/centos">Centos</a>
+        <a class="badge badge-primary" href="/tags/centos">CentOS</a>
     
         <a class="badge badge-primary" href="/tags/linux">Linux</a>
     
@@ -122,7 +213,7 @@ Edgarxue&#39;s Site
 
         
 <div class="blog-post-categories text-secondary">
-    <strong>分类:</strong>
+    <strong>Categories:</strong>
     
         <a class="badge badge-primary" href="/categories/ops">Ops</a>
     
@@ -144,6 +235,55 @@ git版本： 1.7.1
 
 
 
+<nav class="blog-pagination">
+    <ul class="pagination justify-content-center">
+        
+        <li class="page-item">
+            <a class="page-link" href="/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+        </li>
+        
+        <li class="page-item disabled">
+            <a class="page-link" href="" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+        </li>
+        
+        
+            
+            
+            
+            
+                
+                
+            
+            
+                <li class="page-item active">
+                    <a class="page-link" href="/">1</a>
+                </li>
+            
+        
+            
+            
+            
+            
+                
+                
+            
+            
+                <li class="page-item ">
+                    <a class="page-link" href="/page/2/">2</a>
+                </li>
+            
+        
+        <li class="page-item ">
+            <a class="page-link" href="/page/2/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+        </li>
+        
+            <li class="page-item">
+                <a class="page-link" href="/page/2/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+            </li>
+        
+    </ul>
+</nav>
+
 
 
 
@@ -155,8 +295,16 @@ git版本： 1.7.1
 
 
 <section>
-    <h4>最新</h4>
+    <h4>Recent Posts</h4>
     <ol class="list-unstyled">
+        
+        <li>
+            <a href="/files/phpfpm/">自定义编译安装Php-fpm</a>
+        </li>
+        
+        <li>
+            <a href="/files/nginx-install/">Nginx编译安装脚本</a>
+        </li>
         
         <li>
             <a href="/files/git_clone_debug/">git clone 出现error:  while accessing https…… fatal: HTTP request failed的思路及解决</a>
@@ -174,7 +322,7 @@ git版本： 1.7.1
         <section>
     
         
-        <h4>分类</h4>
+        <h4>Categories</h4>
         <p>
             
             <a class="badge badge-primary" href="/categories/ops">ops</a>
@@ -183,7 +331,7 @@ git版本： 1.7.1
         
     
         
-        <h4>标签</h4>
+        <h4>Tags</h4>
         <p>
             
             <a class="badge badge-primary" href="/tags/centos">centos</a>
@@ -191,6 +339,10 @@ git版本： 1.7.1
             <a class="badge badge-primary" href="/tags/git">git</a>
             
             <a class="badge badge-primary" href="/tags/linux">linux</a>
+            
+            <a class="badge badge-primary" href="/tags/nginx">nginx</a>
+            
+            <a class="badge badge-primary" href="/tags/php-fpm">php-fpm</a>
             
         </p>
         
@@ -206,7 +358,7 @@ git版本： 1.7.1
     
       <footer class="blog-footer w-100">
     <nav class="navbar navbar-light bg-light">
-        <p class="w-100 text-center"><a href="#">Top</a></p>
+        <p class="w-100 text-center"><a href="#">Back to top</a></p>
     </nav>
 </footer>
 
@@ -214,8 +366,8 @@ git版本： 1.7.1
 
     
     
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
   </body>
 </html>

@@ -5,10 +5,10 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<meta property="og:title" content="Files" />
+<meta property="og:title" content="Php Fpm" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="http://edgarxue.github.io/files/" />
+<meta property="og:url" content="http://edgarxue.github.io/tags/php-fpm/" />
 
 
 
@@ -24,16 +24,16 @@
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Files"/>
+<meta name="twitter:title" content="Php Fpm"/>
 <meta name="twitter:description" content=""/>
 
 
 
-    <link rel="canonical" href="http://edgarxue.github.io/files/">
+    <link rel="canonical" href="http://edgarxue.github.io/tags/php-fpm/">
 
     <title>
       
-        Files | Edgarxue&#39;s Site
+        Php Fpm | Edgarxue&#39;s Site
       
     </title>
 
@@ -43,7 +43,7 @@
     <link href="http://edgarxue.github.io/css/style.css" rel="stylesheet">
 
     
-    <link href="http://edgarxue.github.io/files/index.xml" rel="alternate" type="application/rss+xml" title="Edgarxue&#39;s Site" />
+    <link href="http://edgarxue.github.io/tags/php-fpm/index.xml" rel="alternate" type="application/rss+xml" title="Edgarxue&#39;s Site" />
     
     
     
@@ -132,101 +132,6 @@ Edgarxue&#39;s Site
 EX: 保存脚本为php-fpm_install.sh bash php-fpm_install.sh php.version /path/to/install  脚本 #!/bin/bash # 安装依赖包 yum -y install libjpeg libjpeg-devel libpng libpng-devel libXpm libXpm-devel freetype freetype-devel zlib zlib-devel bzip2 bzip2-devel libcurl curl-devel libmcrypt libmcrypt-devel mhash-devel libxml2 libxml2-devel openssl openssl-devel libtiff libtiff-devel gd gd-devel # configure /usr/bin/tar -xf $1.tar.gz cd $1 ./configure --prefix=$2 --with-mysql=mysqlnd --with-pdo-mysql=mysqlnd --with-gd --with-mysqli=mysqlnd --with-openssl --with-bz2 --enable-mbstring --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-curl --with-libxml-dir=/usr --with-mcrypt=/usr/local/include --with-mhash=/usr/local/include --enable-xml --enable-sockets --enable-fpm --enable-zip --enable-soap --with-mcrypt --with-config-file-path=$2/etc --with-config-file-scan-dir=$2/etc/php.
     <p></p>
     <a href="/files/phpfpm/">Read More →</a>
-</article>
-    
-
-
-
-    
-        <article class="blog-post">
-    <header>
-        <h2 class="blog-post-title">
-            <a class="text-dark" href="/files/nginx-install/">Nginx编译安装脚本</a>
-        </h2>
-        
-
-
-<div class="blog-post-date text-secondary">
-    
-        May 15, 2018
-    
-    
-</div>
-
-        
-<div class="blog-post-tags text-secondary">
-    <strong>Tags:</strong>
-    
-        <a class="badge badge-primary" href="/tags/nginx">Nginx</a>
-    
-        <a class="badge badge-primary" href="/tags/centos">CentOS</a>
-    
-</div>
-
-        
-<div class="blog-post-categories text-secondary">
-    <strong>Categories:</strong>
-    
-        <a class="badge badge-primary" href="/categories/ops">Ops</a>
-    
-</div>
-
-    </header>
-    系统版本：CentOS Linux release 7.4.1708 (Core)
- 参数说明 $1 : nginx版本号 $2 : 安装路径 $3 : 日志路径  脚本 鉴于Centos 7已经在不使用SysV, 该脚本使用systemd管理nginx
-#!/bin/bash # # author：edgarxue # 安装依赖包 yum -y install gcc openssl-devel pcre-devel zlib-devel # 准备文件、目录 /usr/bin/mkdir -p $2/tmp/nginx/ touch $3/error.log touch $3/access.log # 解压 /usr/bin/tar -xf $1.tar.gz # 开始安装 cd $1 ./configure --prefix=$2 --sbin-path=/usr/sbin/nginx --conf-path=$2/conf/nginx.conf --error-log-path=$3/error.log --http-log-path=$3/access.log --pid-path=/run/nginx.pid --lock-path=/var/lock/nginx.lock --user=nobody --group=nobody --with-pcre --with-http_ssl_module --with-http_flv_module --with-http_stub_status_module --with-http_gzip_static_module --http-client-body-temp-path=$2/tmp/nginx/client/ --http-proxy-temp-path=$2/tmp/nginx/proxy/ --http-fastcgi-temp-path=$2/tmp/nginx/fcgi/ --http-uwsgi-temp-path=$2/tmp/nginx/uwsgi --http-scgi-temp-path=$2/tmp/nginx/scgi make &amp;&amp; make install # 创建配置管理文件 cat &gt;&gt; /lib/systemd/system/nginx.
-    <p></p>
-    <a href="/files/nginx-install/">Read More →</a>
-</article>
-    
-
-
-
-    
-        <article class="blog-post">
-    <header>
-        <h2 class="blog-post-title">
-            <a class="text-dark" href="/files/git_clone_debug/">git clone 出现error:  while accessing https…… fatal: HTTP request failed的思路及解决</a>
-        </h2>
-        
-
-
-<div class="blog-post-date text-secondary">
-    
-        May 4, 2018
-    
-    
-</div>
-
-        
-<div class="blog-post-tags text-secondary">
-    <strong>Tags:</strong>
-    
-        <a class="badge badge-primary" href="/tags/git">Git</a>
-    
-        <a class="badge badge-primary" href="/tags/centos">CentOS</a>
-    
-        <a class="badge badge-primary" href="/tags/linux">Linux</a>
-    
-</div>
-
-        
-<div class="blog-post-categories text-secondary">
-    <strong>Categories:</strong>
-    
-        <a class="badge badge-primary" href="/categories/ops">Ops</a>
-    
-</div>
-
-    </header>
-    环境：Centos 6.5
-git版本： 1.7.1
- 瞎逛github的时候发现cloudflare有个alertmanager的皮unsee，就准备搞下来试试，竟然遇到如下错误：
-# git clone -vvvvv https://github.com/cloudflare/unsee.git Initialized empty Git repository in /home/wenba/go/unsee/.git/ error: while accessing https://github.com/cloudflare/unsee.git/info/refs fatal: HTTP request failed  赶紧搜了一下解决办法，网上一众大神都说要升级git……简直💊啊，如此伤筋动骨，我表示不服……
-那就一步一步的来解决吧！
-首先看验证下是不是网络问题吧 # wget https://github.com/cloudflare/unsee.git --2018-05-04 11:17:05-- https://github.com/cloudflare/unsee.git Resolving github.com... 13.229.188.59, 13.250.177.223, 52.74.223.119 Connecting to github.com|13.229.188.59|:443... connected. HTTP request sent, awaiting response... 301 Moved Permanently Location: https://github.com/cloudflare/unsee [following] --2018-05-04 11:17:06-- https://github.com/cloudflare/unsee Reusing existing connection to github.com:443. HTTP request sent, awaiting response... 200 OK ……  网络可达，排除墙的问题。
-    <p></p>
-    <a href="/files/git_clone_debug/">Read More →</a>
 </article>
     
 

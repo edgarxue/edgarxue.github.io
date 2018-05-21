@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <meta property="og:title" content="git clone 出现error:  while accessing https…… fatal: HTTP request failed的思路及解决" />
@@ -40,6 +41,7 @@ git版本： 1.7.1
 首先看验证下是不是网络问题吧 # wget https://github.com/cloudflare/unsee.git --2018-05-04 11:17:05-- https://github.com/cloudflare/unsee.git Resolving github.com... 13.229.188.59, 13.250.177.223, 52.74.223.119 Connecting to github.com|13.229.188.59|:443... connected. HTTP request sent, awaiting response... 301 Moved Permanently Location: https://github.com/cloudflare/unsee [following] --2018-05-04 11:17:06-- https://github.com/cloudflare/unsee Reusing existing connection to github.com:443. HTTP request sent, awaiting response... 200 OK ……  网络可达，排除墙的问题。"/>
 
 
+
     <link rel="canonical" href="http://edgarxue.github.io/files/git_clone_debug/">
 
     <title>
@@ -49,14 +51,12 @@ git版本： 1.7.1
     </title>
 
     
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
     <link href="http://edgarxue.github.io/css/style.css" rel="stylesheet">
 
     
-
     
-
     
   </head>
   <body>
@@ -91,6 +91,7 @@ Edgarxue&#39;s Site
         </div>
     </nav>
 </header>
+
     
 
     
@@ -100,12 +101,11 @@ Edgarxue&#39;s Site
 
           
 
-<article class="blog-post">
-    <header>
-        <h2 class="blog-post-title">
-            <a class="text-dark" href="/files/git_clone_debug/">git clone 出现error:  while accessing https…… fatal: HTTP request failed的思路及解决</a>
-        </h2>
-        
+<header>
+    <h2 class="blog-post-title">
+        <a class="text-dark" href="/files/git_clone_debug/">git clone 出现error:  while accessing https…… fatal: HTTP request failed的思路及解决</a>
+    </h2>
+    
 
 
 <div class="blog-post-date text-secondary">
@@ -114,28 +114,30 @@ Edgarxue&#39;s Site
     
     
 </div>
-        
+
+    
 <div class="blog-post-tags text-secondary">
-    <strong>标签:</strong>
+    <strong>Tags:</strong>
     
         <a class="badge badge-primary" href="/tags/git">Git</a>
     
-        <a class="badge badge-primary" href="/tags/centos">Centos</a>
+        <a class="badge badge-primary" href="/tags/centos">CentOS</a>
     
         <a class="badge badge-primary" href="/tags/linux">Linux</a>
     
 </div>
 
-        
+    
 <div class="blog-post-categories text-secondary">
-    <strong>分类:</strong>
+    <strong>Categories:</strong>
     
         <a class="badge badge-primary" href="/categories/ops">Ops</a>
     
 </div>
 
-    </header>
     <hr>
+</header>
+<article class="blog-post">
     
 
 <blockquote>
@@ -145,6 +147,8 @@ Edgarxue&#39;s Site
 </blockquote>
 
 <hr />
+
+<p><img src="https://raw.githubusercontent.com/edgarxue/edgarxue.github.io/master/picture/git-clone.jpg"  height="600" width="800"></p>
 
 <p>瞎逛github的时候发现<a href="https://github.com/cloudflare">cloudflare</a>有个alertmanager的皮<strong>unsee</strong>，就准备搞下来试试，竟然遇到如下错误：</p>
 
@@ -253,8 +257,16 @@ remote: Compressing objects: 100% (58/58), done
 
 
 <section>
-    <h4>最新</h4>
+    <h4>Recent Posts</h4>
     <ol class="list-unstyled">
+        
+        <li>
+            <a href="/files/phpfpm/">自定义编译安装Php-fpm</a>
+        </li>
+        
+        <li>
+            <a href="/files/nginx-install/">Nginx编译安装脚本</a>
+        </li>
         
         <li>
             <a href="/files/git_clone_debug/">git clone 出现error:  while accessing https…… fatal: HTTP request failed的思路及解决</a>
@@ -272,7 +284,7 @@ remote: Compressing objects: 100% (58/58), done
         <section>
     
         
-        <h4>分类</h4>
+        <h4>Categories</h4>
         <p>
             
             <a class="badge badge-primary" href="/categories/ops">ops</a>
@@ -281,7 +293,7 @@ remote: Compressing objects: 100% (58/58), done
         
     
         
-        <h4>标签</h4>
+        <h4>Tags</h4>
         <p>
             
             <a class="badge badge-primary" href="/tags/centos">centos</a>
@@ -289,6 +301,10 @@ remote: Compressing objects: 100% (58/58), done
             <a class="badge badge-primary" href="/tags/git">git</a>
             
             <a class="badge badge-primary" href="/tags/linux">linux</a>
+            
+            <a class="badge badge-primary" href="/tags/nginx">nginx</a>
+            
+            <a class="badge badge-primary" href="/tags/php-fpm">php-fpm</a>
             
         </p>
         
@@ -304,7 +320,7 @@ remote: Compressing objects: 100% (58/58), done
     
       <footer class="blog-footer w-100">
     <nav class="navbar navbar-light bg-light">
-        <p class="w-100 text-center"><a href="#">Top</a></p>
+        <p class="w-100 text-center"><a href="#">Back to top</a></p>
     </nav>
 </footer>
 
@@ -312,8 +328,8 @@ remote: Compressing objects: 100% (58/58), done
 
     
     
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
   </body>
 </html>

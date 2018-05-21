@@ -6,10 +6,31 @@
     <description>Recent content on Edgarxue&#39;s Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 04 May 2018 16:11:57 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 16 May 2018 14:27:36 +0800</lastBuildDate>
     
 	<atom:link href="http://edgarxue.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>自定义编译安装Php-fpm</title>
+      <link>http://edgarxue.github.io/files/phpfpm/</link>
+      <pubDate>Wed, 16 May 2018 14:27:36 +0800</pubDate>
+      
+      <guid>http://edgarxue.github.io/files/phpfpm/</guid>
+      <description>说明  基本环境为CentOS 7 编译后php-fpm由systemd管理 配置文件目录设置为安装目录下的etc  自定义编译安装php-fpm 下载想要安装的php版本 将脚本保存到和php下载包同一目录
+EX: 保存脚本为php-fpm_install.sh bash php-fpm_install.sh php.version /path/to/install  脚本 #!/bin/bash # 安装依赖包 yum -y install libjpeg libjpeg-devel libpng libpng-devel libXpm libXpm-devel freetype freetype-devel zlib zlib-devel bzip2 bzip2-devel libcurl curl-devel libmcrypt libmcrypt-devel mhash-devel libxml2 libxml2-devel openssl openssl-devel libtiff libtiff-devel gd gd-devel # configure /usr/bin/tar -xf $1.tar.gz cd $1 ./configure --prefix=$2 --with-mysql=mysqlnd --with-pdo-mysql=mysqlnd --with-gd --with-mysqli=mysqlnd --with-openssl --with-bz2 --enable-mbstring --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-curl --with-libxml-dir=/usr --with-mcrypt=/usr/local/include --with-mhash=/usr/local/include --enable-xml --enable-sockets --enable-fpm --enable-zip --enable-soap --with-mcrypt --with-config-file-path=$2/etc --with-config-file-scan-dir=$2/etc/php.</description>
+    </item>
+    
+    <item>
+      <title>Nginx编译安装脚本</title>
+      <link>http://edgarxue.github.io/files/nginx-install/</link>
+      <pubDate>Tue, 15 May 2018 14:27:36 +0800</pubDate>
+      
+      <guid>http://edgarxue.github.io/files/nginx-install/</guid>
+      <description>系统版本：CentOS Linux release 7.4.1708 (Core)
+ 参数说明 $1 : nginx版本号 $2 : 安装路径 $3 : 日志路径  脚本 鉴于Centos 7已经在不使用SysV, 该脚本使用systemd管理nginx
+#!/bin/bash # # author：edgarxue # 安装依赖包 yum -y install gcc openssl-devel pcre-devel zlib-devel # 准备文件、目录 /usr/bin/mkdir -p $2/tmp/nginx/ touch $3/error.log touch $3/access.log # 解压 /usr/bin/tar -xf $1.tar.gz # 开始安装 cd $1 ./configure --prefix=$2 --sbin-path=/usr/sbin/nginx --conf-path=$2/conf/nginx.conf --error-log-path=$3/error.log --http-log-path=$3/access.log --pid-path=/run/nginx.pid --lock-path=/var/lock/nginx.lock --user=nobody --group=nobody --with-pcre --with-http_ssl_module --with-http_flv_module --with-http_stub_status_module --with-http_gzip_static_module --http-client-body-temp-path=$2/tmp/nginx/client/ --http-proxy-temp-path=$2/tmp/nginx/proxy/ --http-fastcgi-temp-path=$2/tmp/nginx/fcgi/ --http-uwsgi-temp-path=$2/tmp/nginx/uwsgi --http-scgi-temp-path=$2/tmp/nginx/scgi make &amp;amp;&amp;amp; make install # 创建配置管理文件 cat &amp;gt;&amp;gt; /lib/systemd/system/nginx.</description>
+    </item>
     
     <item>
       <title>git clone 出现error:  while accessing https…… fatal: HTTP request failed的思路及解决</title>
@@ -23,6 +44,15 @@ git版本： 1.7.1
 # git clone -vvvvv https://github.com/cloudflare/unsee.git Initialized empty Git repository in /home/wenba/go/unsee/.git/ error: while accessing https://github.com/cloudflare/unsee.git/info/refs fatal: HTTP request failed  赶紧搜了一下解决办法，网上一众大神都说要升级git……简直💊啊，如此伤筋动骨，我表示不服……
 那就一步一步的来解决吧！
 首先看验证下是不是网络问题吧 # wget https://github.com/cloudflare/unsee.git --2018-05-04 11:17:05-- https://github.com/cloudflare/unsee.git Resolving github.com... 13.229.188.59, 13.250.177.223, 52.74.223.119 Connecting to github.com|13.229.188.59|:443... connected. HTTP request sent, awaiting response... 301 Moved Permanently Location: https://github.com/cloudflare/unsee [following] --2018-05-04 11:17:06-- https://github.com/cloudflare/unsee Reusing existing connection to github.com:443. HTTP request sent, awaiting response... 200 OK ……  网络可达，排除墙的问题。</description>
+    </item>
+    
+    <item>
+      <title>关于我</title>
+      <link>http://edgarxue.github.io/about/</link>
+      <pubDate>Fri, 04 May 2018 16:07:33 +0800</pubDate>
+      
+      <guid>http://edgarxue.github.io/about/</guid>
+      <description>一个既不激进也不保守的老运维，喜欢新技术。 在系统运维、自动化运维有点小心的。</description>
     </item>
     
   </channel>

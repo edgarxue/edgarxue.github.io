@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nginx on Edgarxue&#39;s Site</title>
+    <link>http://edgarxue.github.io/tags/nginx/</link>
+    <description>Recent content in Nginx on Edgarxue&#39;s Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 15 May 2018 14:27:36 +0800</lastBuildDate>
+    
+	<atom:link href="http://edgarxue.github.io/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Nginx编译安装脚本</title>
+      <link>http://edgarxue.github.io/files/nginx-install/</link>
+      <pubDate>Tue, 15 May 2018 14:27:36 +0800</pubDate>
+      
+      <guid>http://edgarxue.github.io/files/nginx-install/</guid>
+      <description>系统版本：CentOS Linux release 7.4.1708 (Core)
+ 参数说明 $1 : nginx版本号 $2 : 安装路径 $3 : 日志路径  脚本 鉴于Centos 7已经在不使用SysV, 该脚本使用systemd管理nginx
+#!/bin/bash # # author：edgarxue # 安装依赖包 yum -y install gcc openssl-devel pcre-devel zlib-devel # 准备文件、目录 /usr/bin/mkdir -p $2/tmp/nginx/ touch $3/error.log touch $3/access.log # 解压 /usr/bin/tar -xf $1.tar.gz # 开始安装 cd $1 ./configure --prefix=$2 --sbin-path=/usr/sbin/nginx --conf-path=$2/conf/nginx.conf --error-log-path=$3/error.log --http-log-path=$3/access.log --pid-path=/run/nginx.pid --lock-path=/var/lock/nginx.lock --user=nobody --group=nobody --with-pcre --with-http_ssl_module --with-http_flv_module --with-http_stub_status_module --with-http_gzip_static_module --http-client-body-temp-path=$2/tmp/nginx/client/ --http-proxy-temp-path=$2/tmp/nginx/proxy/ --http-fastcgi-temp-path=$2/tmp/nginx/fcgi/ --http-uwsgi-temp-path=$2/tmp/nginx/uwsgi --http-scgi-temp-path=$2/tmp/nginx/scgi make &amp;amp;&amp;amp; make install # 创建配置管理文件 cat &amp;gt;&amp;gt; /lib/systemd/system/nginx.</description>
+    </item>
+    
+  </channel>
+</rss>
