@@ -1,0 +1,19 @@
+BaseUrl: "https://edgarxue.github.io"
+LanguageCode: "zh-CN"
+Title: "Edgarxue`s Blog"
+
+Params:
+  Author: "Edgarxue"
+  DateForm: "Mon, May 21, 2018"
+  Github: "edgarxue"
+  ShowRelatedPost: True
+  Disqus: "unresolved"
+  SyntaxHighlightTheme: "github.min.css"
+
+Indexes:
+  tag: "tags"
+
+permalinks:
+  post: /blog/:year/:month/:day/:slug/
+
+MetadataFormat: "yaml"
