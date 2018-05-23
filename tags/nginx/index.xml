@@ -6,10 +6,21 @@
     <description>Recent content in Nginx on Edgarxue&#39;s Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 May 2018 14:27:36 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 23 May 2018 11:03:26 +0800</lastBuildDate>
     
 	<atom:link href="http://edgarxue.github.io/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>开启nginx&#43;phpfpm状态页面</title>
+      <link>http://edgarxue.github.io/files/%E5%BC%80%E5%90%AFnginx&#43;phpfpm%E7%8A%B6%E6%80%81%E9%A1%B5%E9%9D%A2/</link>
+      <pubDate>Wed, 23 May 2018 11:03:26 +0800</pubDate>
+      
+      <guid>http://edgarxue.github.io/files/%E5%BC%80%E5%90%AFnginx&#43;phpfpm%E7%8A%B6%E6%80%81%E9%A1%B5%E9%9D%A2/</guid>
+      <description>开启nginx、phpfpm的状态页面，便于监控和调优
+ 开启php-fpm的状态页面 编辑phpfpm配置文件 # 在php-fpm配置文件中开启状态页面 vim /path/to/php-fpm_conf/php-fpm.conf #取消以下两项的注释 pm.status_path = /pfstatus # /pfstatus自定义 ping.path = /ping # php ping接口  重新加载php-fpm sudo systemctl reload php-fpm.service  配置nginx 添加状态页面 把以下页面放到nginx配置目录下，保存为status.conf
+server { listen 8080 default_server; # 端口自定义 server_name _; location /ngstatus # nginx status location自定义 { stub_status on; access_log off; allow 127.0.0.1; deny all; } location ~ ^/(pfstatus|ping)$ # 根据php-fpm.conf中的配置 { include fastcgi_params; fastcgi_pass 127.0.0.1:9000; fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; allow 127.</description>
+    </item>
     
     <item>
       <title>Nginx编译安装脚本</title>

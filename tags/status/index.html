@@ -5,14 +5,14 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<meta property="og:title" content="Tags" />
+<meta property="og:title" content="Status" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="http://edgarxue.github.io/tags/" />
+<meta property="og:url" content="http://edgarxue.github.io/tags/status/" />
 
 
 
-<meta property="og:updated_time" content="2018-05-16T14:27:36&#43;08:00"/>
+<meta property="og:updated_time" content="2018-05-23T11:03:26&#43;08:00"/>
 
 
 
@@ -24,16 +24,16 @@
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Tags"/>
+<meta name="twitter:title" content="Status"/>
 <meta name="twitter:description" content=""/>
 
 
 
-    <link rel="canonical" href="http://edgarxue.github.io/tags/">
+    <link rel="canonical" href="http://edgarxue.github.io/tags/status/">
 
     <title>
       
-        Tags | Edgarxue&#39;s Site
+        Status | Edgarxue&#39;s Site
       
     </title>
 
@@ -44,7 +44,7 @@
     <link href="http://edgarxue.github.io/css/style.css" rel="stylesheet">
 
     
-    <link href="http://edgarxue.github.io/tags/index.xml" rel="alternate" type="application/rss+xml" title="Edgarxue&#39;s Site" />
+    <link href="http://edgarxue.github.io/tags/status/index.xml" rel="alternate" type="application/rss+xml" title="Edgarxue&#39;s Site" />
     
     
     
@@ -96,14 +96,14 @@ Edgarxue&#39;s Site
     
     <div class="summary">
         <h2 class="blog-post-title">
-            <a class="text-dark" href="/tags/centos/">Centos</a>
+            <a class="text-dark" href="/files/%E5%BC%80%E5%90%AFnginx&#43;phpfpm%E7%8A%B6%E6%80%81%E9%A1%B5%E9%9D%A2/">开启nginx&#43;phpfpm状态页面</a>
         </h2>
         
 
 
 <div class="blog-post-date text-secondary">
     
-        May 16, 2018
+        May 23, 2018
     
     
         by <span rel="author">edgarxue</span>
@@ -111,79 +111,33 @@ Edgarxue&#39;s Site
 </div>
 
         
-        
-
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
     
-        
-    </div>
-    <p></p>
-    <a href="/tags/centos/">Read More →</a>
-</article>
-
+        <a class="badge badge-primary" href="/tags/php-fpm">php-fpm</a>
     
-
-
-
+        <a class="badge badge-primary" href="/tags/nginx">nginx</a>
     
-        <article class="blog-post">
-    
-    <div class="summary">
-        <h2 class="blog-post-title">
-            <a class="text-dark" href="/tags/git/">Git</a>
-        </h2>
-        
-
-
-<div class="blog-post-date text-secondary">
-    
-        May 4, 2018
-    
-    
-        by <span rel="author">edgarxue</span>
+        <a class="badge badge-primary" href="/tags/status">status</a>
     
 </div>
 
         
-        
-
+<div class="blog-post-categories text-secondary">
+    <strong>Categories:</strong>
     
-        
-    </div>
-    <p></p>
-    <a href="/tags/git/">Read More →</a>
-</article>
-
-    
-
-
-
-    
-        <article class="blog-post">
-    
-    <div class="summary">
-        <h2 class="blog-post-title">
-            <a class="text-dark" href="/tags/linux/">Linux</a>
-        </h2>
-        
-
-
-<div class="blog-post-date text-secondary">
-    
-        May 4, 2018
-    
-    
-        by <span rel="author">edgarxue</span>
+        <a class="badge badge-info" href="/categories/ops">Ops</a>
     
 </div>
 
-        
-        
 
     
-        
+       开启nginx、phpfpm的状态页面，便于监控和调优
+ 开启php-fpm的状态页面 编辑phpfpm配置文件 # 在php-fpm配置文件中开启状态页面 vim /path/to/php-fpm_conf/php-fpm.conf #取消以下两项的注释 pm.status_path = /pfstatus # /pfstatus自定义 ping.path = /ping # php ping接口  重新加载php-fpm sudo systemctl reload php-fpm.service  配置nginx 添加状态页面 把以下页面放到nginx配置目录下，保存为status.conf
+server { listen 8080 default_server; # 端口自定义 server_name _; location /ngstatus # nginx status location自定义 { stub_status on; access_log off; allow 127.0.0.1; deny all; } location ~ ^/(pfstatus|ping)$ # 根据php-fpm.conf中的配置 { include fastcgi_params; fastcgi_pass 127.0.0.1:9000; fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; allow 127. 
     </div>
     <p></p>
-    <a href="/tags/linux/">Read More →</a>
+    <a href="/files/%E5%BC%80%E5%90%AFnginx&#43;phpfpm%E7%8A%B6%E6%80%81%E9%A1%B5%E9%9D%A2/">Read More →</a>
 </article>
 
     
@@ -191,55 +145,6 @@ Edgarxue&#39;s Site
 
 
 
-
-<nav class="blog-pagination">
-    <ul class="pagination justify-content-center">
-        
-        <li class="page-item">
-            <a class="page-link" href="/tags/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-        </li>
-        
-        <li class="page-item disabled">
-            <a class="page-link" href="" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-        </li>
-        
-        
-            
-            
-            
-            
-                
-                
-            
-            
-                <li class="page-item active">
-                    <a class="page-link" href="/tags/">1</a>
-                </li>
-            
-        
-            
-            
-            
-            
-                
-                
-            
-            
-                <li class="page-item ">
-                    <a class="page-link" href="/tags/page/2/">2</a>
-                </li>
-            
-        
-        <li class="page-item ">
-            <a class="page-link" href="/tags/page/2/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-        </li>
-        
-            <li class="page-item">
-                <a class="page-link" href="/tags/page/2/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-            </li>
-        
-    </ul>
-</nav>
 
 
 

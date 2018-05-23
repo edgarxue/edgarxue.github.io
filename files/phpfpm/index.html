@@ -44,6 +44,7 @@ EX: 保存脚本为php-fpm_install.sh bash php-fpm_install.sh php.version /path/
 
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
 
     <link href="http://edgarxue.github.io/css/style.css" rel="stylesheet">
 
@@ -54,24 +55,22 @@ EX: 保存脚本为php-fpm_install.sh bash php-fpm_install.sh php.version /path/
   <body>
     
       <header class="blog-header">
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <a class="navbar-brand" href="/">
-            <img src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
+
+    <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+	   <a class="navbar-brand" href="/">
+		    <img src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
     alt="">
 Edgarxue&#39;s Site
 
 
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        
         <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
             <ul class="navbar-nav">
                 
                 
                 <li class="nav-item ">
-                    <a class="nav-link" href="/">Home</a>
+                    <a class="nav-link" href="/files">Home</a>
                 </li>
                 
                 <li class="nav-item ">
@@ -79,7 +78,6 @@ Edgarxue&#39;s Site
                 </li>
                 
             </ul>
-            
         </div>
     </nav>
 </header>
@@ -89,7 +87,7 @@ Edgarxue&#39;s Site
     
     <div class="container">
       <div class="row">
-        <div class="col-12 col-lg-8 blog-main">
+        <div class="col-sm-8 col-lg-8 blog-main">
 
           
 
@@ -104,6 +102,8 @@ Edgarxue&#39;s Site
     
         May 16, 2018
     
+    
+        by <span rel="author">edgarxue</span>
     
 </div>
 
@@ -121,13 +121,29 @@ Edgarxue&#39;s Site
 <div class="blog-post-categories text-secondary">
     <strong>Categories:</strong>
     
-        <a class="badge badge-primary" href="/categories/ops">Ops</a>
+        <a class="badge badge-info" href="/categories/ops">Ops</a>
     
 </div>
+
 
     <hr>
 </header>
 <article class="blog-post">
+    <div id="toc" class="well col-md-8 col-sm-6">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#说明">说明</a></li>
+<li><a href="#自定义编译安装php-fpm">自定义编译安装php-fpm</a></li>
+<li><a href="#脚本">脚本</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
     
 
 <h3 id="说明">说明</h3>
@@ -182,9 +198,6 @@ systemctl daemon-reload
 systemctl start php-fpm.service
 </code></pre>
 
-
-    
-
     
 
     <h4>See also</h4>
@@ -202,7 +215,6 @@ systemctl start php-fpm.service
 
 
         </div>
-
         <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
     
         
@@ -211,6 +223,10 @@ systemctl start php-fpm.service
 <section>
     <h4>Recent Posts</h4>
     <ol class="list-unstyled">
+        
+        <li>
+            <a href="/files/%E5%BC%80%E5%90%AFnginx&#43;phpfpm%E7%8A%B6%E6%80%81%E9%A1%B5%E9%9D%A2/">开启nginx+phpfpm状态页面</a>
+        </li>
         
         <li>
             <a href="/files/phpfpm/">自定义编译安装Php-fpm</a>
@@ -258,22 +274,27 @@ systemctl start php-fpm.service
             
             <a class="badge badge-primary" href="/tags/php-fpm">php-fpm</a>
             
+            <a class="badge badge-primary" href="/tags/status">status</a>
+            
         </p>
         
     
 </section>
+
     
 </aside>
-
       </div>
     </div>
     
 
     
-      <footer class="blog-footer w-100">
-    <nav class="navbar navbar-light bg-light">
-        <p class="w-100 text-center"><a href="#">Back to top</a></p>
-    </nav>
+      
+<footer class="blog-footer">
+      <div class="copyright-info">
+          <p class="text-center"><a href="#">Top</a></p>
+        <p class="text-center"><span class="h-logo">&copy; Copyright Edgarxue&#39;s Site</span></p>
+          <p class="text-center"><a href="https://github.com/edgarxue/hugo-bootstrap">hugo-bootstrap</a> modified by <a href="#">Edgarxue</a>.</p>
+      </div>
 </footer>
 
     
@@ -283,5 +304,7 @@ systemctl start php-fpm.service
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
   </body>
 </html>
