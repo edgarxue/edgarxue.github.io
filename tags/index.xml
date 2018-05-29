@@ -39,9 +39,18 @@
     </item>
     
     <item>
+      <title>Monitor</title>
+      <link>http://edgarxue.github.io/tags/monitor/</link>
+      <pubDate>Tue, 29 May 2018 16:42:12 +0800</pubDate>
+      
+      <guid>http://edgarxue.github.io/tags/monitor/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Nginx</title>
       <link>http://edgarxue.github.io/tags/nginx/</link>
-      <pubDate>Wed, 23 May 2018 11:03:26 +0800</pubDate>
+      <pubDate>Tue, 29 May 2018 16:42:12 +0800</pubDate>
       
       <guid>http://edgarxue.github.io/tags/nginx/</guid>
       <description></description>
@@ -62,6 +71,15 @@
       <pubDate>Wed, 23 May 2018 11:03:26 +0800</pubDate>
       
       <guid>http://edgarxue.github.io/tags/status/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Zabbix</title>
+      <link>http://edgarxue.github.io/tags/zabbix/</link>
+      <pubDate>Tue, 29 May 2018 16:42:12 +0800</pubDate>
+      
+      <guid>http://edgarxue.github.io/tags/zabbix/</guid>
       <description></description>
     </item>
     

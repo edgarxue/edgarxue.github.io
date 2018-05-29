@@ -67,7 +67,7 @@ Edgarxue&#39;s Site
                 
                 
                 <li class="nav-item ">
-                    <a class="nav-link" href="/files">Home</a>
+                    <a class="nav-link" href="/">Home</a>
                 </li>
                 
                 <li class="nav-item ">
@@ -96,7 +96,7 @@ Edgarxue&#39;s Site
     
     <div class="summary">
         <h2 class="blog-post-title">
-            <a class="text-dark" href="/files/%E5%BC%80%E5%90%AFnginx&#43;phpfpm%E7%8A%B6%E6%80%81%E9%A1%B5%E9%9D%A2/">开启nginx&#43;phpfpm状态页面</a>
+            <a class="text-dark" href="/2018/05/%E5%BC%80%E5%90%AFnginx-phpfpm%E7%8A%B6%E6%80%81%E9%A1%B5%E9%9D%A2/">开启nginx&#43;phpfpm状态页面</a>
         </h2>
         
 
@@ -126,7 +126,7 @@ Edgarxue&#39;s Site
 <div class="blog-post-categories text-secondary">
     <strong>Categories:</strong>
     
-        <a class="badge badge-info" href="/categories/ops">Ops</a>
+        <a class="badge badge-primary" href="/categories/ops">Ops</a>
     
 </div>
 
@@ -137,7 +137,7 @@ Edgarxue&#39;s Site
 server { listen 8080 default_server; # 端口自定义 server_name _; location /ngstatus # nginx status location自定义 { stub_status on; access_log off; allow 127.0.0.1; deny all; } location ~ ^/(pfstatus|ping)$ # 根据php-fpm.conf中的配置 { include fastcgi_params; fastcgi_pass 127.0.0.1:9000; fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; allow 127. 
     </div>
     <p></p>
-    <a href="/files/%E5%BC%80%E5%90%AFnginx&#43;phpfpm%E7%8A%B6%E6%80%81%E9%A1%B5%E9%9D%A2/">Read More →</a>
+    <a href="/2018/05/%E5%BC%80%E5%90%AFnginx-phpfpm%E7%8A%B6%E6%80%81%E9%A1%B5%E9%9D%A2/">Read More →</a>
 </article>
 
     
@@ -155,33 +155,6 @@ server { listen 8080 default_server; # 端口自定义 server_name _; location /
         
 
 
-<section>
-    <h4>Recent Posts</h4>
-    <ol class="list-unstyled">
-        
-        <li>
-            <a href="/files/%E5%BC%80%E5%90%AFnginx&#43;phpfpm%E7%8A%B6%E6%80%81%E9%A1%B5%E9%9D%A2/">开启nginx+phpfpm状态页面</a>
-        </li>
-        
-        <li>
-            <a href="/files/phpfpm/">自定义编译安装Php-fpm</a>
-        </li>
-        
-        <li>
-            <a href="/files/nginx-install/">Nginx编译安装脚本</a>
-        </li>
-        
-        <li>
-            <a href="/files/git_clone_debug/">git clone 出现error:  while accessing https…… fatal: HTTP request failed的思路及解决</a>
-        </li>
-        
-        <li>
-            <a href="/files/">Files</a>
-        </li>
-        
-    </ol>
-</section>
-
     
     
         <section>
@@ -189,6 +162,8 @@ server { listen 8080 default_server; # 端口自定义 server_name _; location /
         
         <h4>Categories</h4>
         <p>
+            
+            <a class="badge badge-primary" href="/categories/monitor">monitor</a>
             
             <a class="badge badge-primary" href="/categories/ops">ops</a>
             
@@ -205,11 +180,15 @@ server { listen 8080 default_server; # 端口自定义 server_name _; location /
             
             <a class="badge badge-primary" href="/tags/linux">linux</a>
             
+            <a class="badge badge-primary" href="/tags/monitor">monitor</a>
+            
             <a class="badge badge-primary" href="/tags/nginx">nginx</a>
             
             <a class="badge badge-primary" href="/tags/php-fpm">php-fpm</a>
             
             <a class="badge badge-primary" href="/tags/status">status</a>
+            
+            <a class="badge badge-primary" href="/tags/zabbix">zabbix</a>
             
         </p>
         

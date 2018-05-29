@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Monitor on Edgarxue&#39;s Site</title>
+    <link>http://edgarxue.github.io/categories/monitor/</link>
+    <description>Recent content in Monitor on Edgarxue&#39;s Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 29 May 2018 16:42:12 +0800</lastBuildDate>
+    
+	<atom:link href="http://edgarxue.github.io/categories/monitor/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Zabbix监控nginx脚本两种</title>
+      <link>http://edgarxue.github.io/2018/05/zabbix%E7%9B%91%E6%8E%A7nginx%E8%84%9A%E6%9C%AC%E4%B8%A4%E7%A7%8D/</link>
+      <pubDate>Tue, 29 May 2018 16:42:12 +0800</pubDate>
+      
+      <guid>http://edgarxue.github.io/2018/05/zabbix%E7%9B%91%E6%8E%A7nginx%E8%84%9A%E6%9C%AC%E4%B8%A4%E7%A7%8D/</guid>
+      <description>shell脚本 #!/bin/bash HOST=&amp;quot;127.0.0.1&amp;quot; PORT=&amp;quot;8080&amp;quot; function ping { /sbin/pidof nginx | wc -l } function active { /usr/bin/curl -s http://$HOST:$PORT/ngstatus|awk &#39;/Active/ {print $NF}&#39; } function Reading { /usr/bin/curl -s http://$HOST:$PORT/ngstatus| awk &#39;/Reading/ {print $2}&#39; } function Writing { /usr/bin/curl -s http://$HOST:$PORT/ngstatus | awk &#39;/Writing/ {print $4}&#39; } function Waiting { /usr/bin/curl -s http://$HOST:$PORT/ngstatus| awk &#39;/Waiting/ {print $6}&#39; } function accepts { /usr/bin/curl -s http://$HOST:$PORT/ngstatus| sed -n &#39;3 p&#39; | awk &#39;{print $1}&#39; } function handled { /usr/bin/curl -s http://$HOST:$PORT/ngstatus| sed -n &#39;3 p&#39; | awk &#39;{print $2}&#39; } function requests { /usr/bin/curl -s http://$HOST:$PORT/ngstatus| sed -n &#39;3 p&#39; | awk &#39;{print $3}&#39; } $1  python脚本 import requests import json import sys host = &#39;127.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Edgarxue&#39;s Site</title>
+    <link>http://edgarxue.github.io/post/</link>
+    <description>Recent content in Posts on Edgarxue&#39;s Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 29 May 2018 16:42:12 +0800</lastBuildDate>
+    
+	<atom:link href="http://edgarxue.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Zabbix监控nginx脚本两种</title>
+      <link>http://edgarxue.github.io/2018/05/zabbix%E7%9B%91%E6%8E%A7nginx%E8%84%9A%E6%9C%AC%E4%B8%A4%E7%A7%8D/</link>
+      <pubDate>Tue, 29 May 2018 16:42:12 +0800</pubDate>
+      
+      <guid>http://edgarxue.github.io/2018/05/zabbix%E7%9B%91%E6%8E%A7nginx%E8%84%9A%E6%9C%AC%E4%B8%A4%E7%A7%8D/</guid>
+      <description>shell脚本 #!/bin/bash HOST=&amp;quot;127.0.0.1&amp;quot; PORT=&amp;quot;8080&amp;quot; function ping { /sbin/pidof nginx | wc -l } function active { /usr/bin/curl -s http://$HOST:$PORT/ngstatus|awk &#39;/Active/ {print $NF}&#39; } function Reading { /usr/bin/curl -s http://$HOST:$PORT/ngstatus| awk &#39;/Reading/ {print $2}&#39; } function Writing { /usr/bin/curl -s http://$HOST:$PORT/ngstatus | awk &#39;/Writing/ {print $4}&#39; } function Waiting { /usr/bin/curl -s http://$HOST:$PORT/ngstatus| awk &#39;/Waiting/ {print $6}&#39; } function accepts { /usr/bin/curl -s http://$HOST:$PORT/ngstatus| sed -n &#39;3 p&#39; | awk &#39;{print $1}&#39; } function handled { /usr/bin/curl -s http://$HOST:$PORT/ngstatus| sed -n &#39;3 p&#39; | awk &#39;{print $2}&#39; } function requests { /usr/bin/curl -s http://$HOST:$PORT/ngstatus| sed -n &#39;3 p&#39; | awk &#39;{print $3}&#39; } $1  python脚本 import requests import json import sys host = &#39;127.</description>
+    </item>
+    
+    <item>
+      <title>开启nginx&#43;phpfpm状态页面</title>
+      <link>http://edgarxue.github.io/2018/05/%E5%BC%80%E5%90%AFnginx-phpfpm%E7%8A%B6%E6%80%81%E9%A1%B5%E9%9D%A2/</link>
+      <pubDate>Wed, 23 May 2018 11:03:26 +0800</pubDate>
+      
+      <guid>http://edgarxue.github.io/2018/05/%E5%BC%80%E5%90%AFnginx-phpfpm%E7%8A%B6%E6%80%81%E9%A1%B5%E9%9D%A2/</guid>
+      <description>开启nginx、phpfpm的状态页面，便于监控和调优
+ 开启php-fpm的状态页面 编辑phpfpm配置文件 # 在php-fpm配置文件中开启状态页面 vim /path/to/php-fpm_conf/php-fpm.conf #取消以下两项的注释 pm.status_path = /pfstatus # /pfstatus自定义 ping.path = /ping # php ping接口  重新加载php-fpm sudo systemctl reload php-fpm.service  配置nginx 添加状态页面 把以下页面放到nginx配置目录下，保存为status.conf
+server { listen 8080 default_server; # 端口自定义 server_name _; location /ngstatus # nginx status location自定义 { stub_status on; access_log off; allow 127.0.0.1; deny all; } location ~ ^/(pfstatus|ping)$ # 根据php-fpm.conf中的配置 { include fastcgi_params; fastcgi_pass 127.0.0.1:9000; fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; allow 127.</description>
+    </item>
+    
+    <item>
+      <title>自定义编译安装Php-fpm</title>
+      <link>http://edgarxue.github.io/2018/05/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85php-fpm/</link>
+      <pubDate>Wed, 16 May 2018 14:27:36 +0800</pubDate>
+      
+      <guid>http://edgarxue.github.io/2018/05/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85php-fpm/</guid>
+      <description>说明  基本环境为CentOS 7 编译后php-fpm由systemd管理 配置文件目录设置为安装目录下的etc  自定义编译安装php-fpm 下载想要安装的php版本 将脚本保存到和php下载包同一目录
+EX: 保存脚本为php-fpm_install.sh bash php-fpm_install.sh php.version /path/to/install  脚本 #!/bin/bash # 安装依赖包 yum -y install libjpeg libjpeg-devel libpng libpng-devel libXpm libXpm-devel freetype freetype-devel zlib zlib-devel bzip2 bzip2-devel libcurl curl-devel libmcrypt libmcrypt-devel mhash-devel libxml2 libxml2-devel openssl openssl-devel libtiff libtiff-devel gd gd-devel # configure /usr/bin/tar -xf $1.tar.gz cd $1 ./configure --prefix=$2 --with-mysql=mysqlnd --with-pdo-mysql=mysqlnd --with-gd --with-mysqli=mysqlnd --with-openssl --with-bz2 --enable-mbstring --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-curl --with-libxml-dir=/usr --with-mcrypt=/usr/local/include --with-mhash=/usr/local/include --enable-xml --enable-sockets --enable-fpm --enable-zip --enable-soap --with-mcrypt --with-config-file-path=$2/etc --with-config-file-scan-dir=$2/etc/php.</description>
+    </item>
+    
+    <item>
+      <title>Nginx编译安装脚本</title>
+      <link>http://edgarxue.github.io/2018/05/nginx%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC/</link>
+      <pubDate>Tue, 15 May 2018 14:27:36 +0800</pubDate>
+      
+      <guid>http://edgarxue.github.io/2018/05/nginx%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC/</guid>
+      <description>系统版本：CentOS Linux release 7.4.1708 (Core)
+ 参数说明 $1 : nginx版本号 $2 : 安装路径 $3 : 日志路径  脚本 鉴于Centos 7已经在不使用SysV, 该脚本使用systemd管理nginx
+#!/bin/bash # # author：edgarxue # 安装依赖包 yum -y install gcc openssl-devel pcre-devel zlib-devel # 准备文件、目录 /usr/bin/mkdir -p $2/tmp/nginx/ touch $3/error.log touch $3/access.log # 解压 /usr/bin/tar -xf $1.tar.gz # 开始安装 cd $1 ./configure --prefix=$2 --sbin-path=/usr/sbin/nginx --conf-path=$2/conf/nginx.conf --error-log-path=$3/error.log --http-log-path=$3/access.log --pid-path=/run/nginx.pid --lock-path=/var/lock/nginx.lock --user=nobody --group=nobody --with-pcre --with-http_ssl_module --with-http_flv_module --with-http_stub_status_module --with-http_gzip_static_module --http-client-body-temp-path=$2/tmp/nginx/client/ --http-proxy-temp-path=$2/tmp/nginx/proxy/ --http-fastcgi-temp-path=$2/tmp/nginx/fcgi/ --http-uwsgi-temp-path=$2/tmp/nginx/uwsgi --http-scgi-temp-path=$2/tmp/nginx/scgi make &amp;amp;&amp;amp; make install # 创建配置管理文件 cat &amp;gt;&amp;gt; /lib/systemd/system/nginx.</description>
+    </item>
+    
+    <item>
+      <title>git clone 出现error:  while accessing https…… fatal: HTTP request failed的思路及解决</title>
+      <link>http://edgarxue.github.io/2018/05/git-clone-%E5%87%BA%E7%8E%B0error--while-accessing-https-fatal-http-request-failed%E7%9A%84%E6%80%9D%E8%B7%AF%E5%8F%8A%E8%A7%A3%E5%86%B3/</link>
+      <pubDate>Fri, 04 May 2018 16:11:57 +0800</pubDate>
+      
+      <guid>http://edgarxue.github.io/2018/05/git-clone-%E5%87%BA%E7%8E%B0error--while-accessing-https-fatal-http-request-failed%E7%9A%84%E6%80%9D%E8%B7%AF%E5%8F%8A%E8%A7%A3%E5%86%B3/</guid>
+      <description>基本环境  环境：Centos 6.5 git版本： 1.7.1  瞎逛github的时候发现cloudflare有个alertmanager的皮unsee，就准备搞下来试试，竟然遇到如下错误：
+# git clone -vvvvv https://github.com/cloudflare/unsee.git Initialized empty Git repository in /home/wenba/go/unsee/.git/ error: while accessing https://github.com/cloudflare/unsee.git/info/refs fatal: HTTP request failed  赶紧搜了一下解决办法，网上一众大神都说要升级git……简直💊啊，如此伤筋动骨，简直不能忍！
+墙？简单验证下 # wget https://github.com/cloudflare/unsee.git --2018-05-04 11:17:05-- https://github.com/cloudflare/unsee.git Resolving github.com... 13.229.188.59, 13.250.177.223, 52.74.223.119 Connecting to github.com|13.229.188.59|:443... connected. HTTP request sent, awaiting response... 301 Moved Permanently Location: https://github.com/cloudflare/unsee [following] --2018-05-04 11:17:06-- https://github.com/cloudflare/unsee Reusing existing connection to github.com:443. HTTP request sent, awaiting response... 200 OK ……  网络可达，排除!</description>
+    </item>
+    
+  </channel>
+</rss>

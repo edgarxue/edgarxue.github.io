@@ -12,7 +12,7 @@
 
 
 
-<meta property="og:updated_time" content="2018-05-23T11:03:26&#43;08:00"/>
+<meta property="og:updated_time" content="2018-05-29T16:42:12&#43;08:00"/>
 
 
 
@@ -67,7 +67,7 @@ Edgarxue&#39;s Site
                 
                 
                 <li class="nav-item ">
-                    <a class="nav-link" href="/files">Home</a>
+                    <a class="nav-link" href="/">Home</a>
                 </li>
                 
                 <li class="nav-item ">
@@ -96,7 +96,60 @@ Edgarxue&#39;s Site
     
     <div class="summary">
         <h2 class="blog-post-title">
-            <a class="text-dark" href="/files/%E5%BC%80%E5%90%AFnginx&#43;phpfpm%E7%8A%B6%E6%80%81%E9%A1%B5%E9%9D%A2/">开启nginx&#43;phpfpm状态页面</a>
+            <a class="text-dark" href="/2018/05/zabbix%E7%9B%91%E6%8E%A7nginx%E8%84%9A%E6%9C%AC%E4%B8%A4%E7%A7%8D/">Zabbix监控nginx脚本两种</a>
+        </h2>
+        
+
+
+<div class="blog-post-date text-secondary">
+    
+        May 29, 2018
+    
+    
+        by <span rel="author">edgarxue</span>
+    
+</div>
+
+        
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="badge badge-primary" href="/tags/zabbix">zabbix</a>
+    
+        <a class="badge badge-primary" href="/tags/monitor">monitor</a>
+    
+        <a class="badge badge-primary" href="/tags/nginx">nginx</a>
+    
+</div>
+
+        
+<div class="blog-post-categories text-secondary">
+    <strong>Categories:</strong>
+    
+        <a class="badge badge-primary" href="/categories/ops">Ops</a>
+    
+        <a class="badge badge-primary" href="/categories/monitor">Monitor</a>
+    
+</div>
+
+
+    
+       shell脚本 #!/bin/bash HOST=&quot;127.0.0.1&quot; PORT=&quot;8080&quot; function ping { /sbin/pidof nginx | wc -l } function active { /usr/bin/curl -s http://$HOST:$PORT/ngstatus|awk '/Active/ {print $NF}' } function Reading { /usr/bin/curl -s http://$HOST:$PORT/ngstatus| awk '/Reading/ {print $2}' } function Writing { /usr/bin/curl -s http://$HOST:$PORT/ngstatus | awk '/Writing/ {print $4}' } function Waiting { /usr/bin/curl -s http://$HOST:$PORT/ngstatus| awk '/Waiting/ {print $6}' } function accepts { /usr/bin/curl -s http://$HOST:$PORT/ngstatus| sed -n '3 p' | awk '{print $1}' } function handled { /usr/bin/curl -s http://$HOST:$PORT/ngstatus| sed -n '3 p' | awk '{print $2}' } function requests { /usr/bin/curl -s http://$HOST:$PORT/ngstatus| sed -n '3 p' | awk '{print $3}' } $1  python脚本 import requests import json import sys host = '127. 
+    </div>
+    <p></p>
+    <a href="/2018/05/zabbix%E7%9B%91%E6%8E%A7nginx%E8%84%9A%E6%9C%AC%E4%B8%A4%E7%A7%8D/">Read More →</a>
+</article>
+
+    
+
+
+
+    
+        <article class="blog-post">
+    
+    <div class="summary">
+        <h2 class="blog-post-title">
+            <a class="text-dark" href="/2018/05/%E5%BC%80%E5%90%AFnginx-phpfpm%E7%8A%B6%E6%80%81%E9%A1%B5%E9%9D%A2/">开启nginx&#43;phpfpm状态页面</a>
         </h2>
         
 
@@ -126,7 +179,7 @@ Edgarxue&#39;s Site
 <div class="blog-post-categories text-secondary">
     <strong>Categories:</strong>
     
-        <a class="badge badge-info" href="/categories/ops">Ops</a>
+        <a class="badge badge-primary" href="/categories/ops">Ops</a>
     
 </div>
 
@@ -137,7 +190,7 @@ Edgarxue&#39;s Site
 server { listen 8080 default_server; # 端口自定义 server_name _; location /ngstatus # nginx status location自定义 { stub_status on; access_log off; allow 127.0.0.1; deny all; } location ~ ^/(pfstatus|ping)$ # 根据php-fpm.conf中的配置 { include fastcgi_params; fastcgi_pass 127.0.0.1:9000; fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; allow 127. 
     </div>
     <p></p>
-    <a href="/files/%E5%BC%80%E5%90%AFnginx&#43;phpfpm%E7%8A%B6%E6%80%81%E9%A1%B5%E9%9D%A2/">Read More →</a>
+    <a href="/2018/05/%E5%BC%80%E5%90%AFnginx-phpfpm%E7%8A%B6%E6%80%81%E9%A1%B5%E9%9D%A2/">Read More →</a>
 </article>
 
     
@@ -149,7 +202,7 @@ server { listen 8080 default_server; # 端口自定义 server_name _; location /
     
     <div class="summary">
         <h2 class="blog-post-title">
-            <a class="text-dark" href="/files/nginx-install/">Nginx编译安装脚本</a>
+            <a class="text-dark" href="/2018/05/nginx%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC/">Nginx编译安装脚本</a>
         </h2>
         
 
@@ -177,7 +230,7 @@ server { listen 8080 default_server; # 端口自定义 server_name _; location /
 <div class="blog-post-categories text-secondary">
     <strong>Categories:</strong>
     
-        <a class="badge badge-info" href="/categories/ops">Ops</a>
+        <a class="badge badge-primary" href="/categories/ops">Ops</a>
     
 </div>
 
@@ -188,7 +241,7 @@ server { listen 8080 default_server; # 端口自定义 server_name _; location /
 #!/bin/bash # # author：edgarxue # 安装依赖包 yum -y install gcc openssl-devel pcre-devel zlib-devel # 准备文件、目录 /usr/bin/mkdir -p $2/tmp/nginx/ touch $3/error.log touch $3/access.log # 解压 /usr/bin/tar -xf $1.tar.gz # 开始安装 cd $1 ./configure --prefix=$2 --sbin-path=/usr/sbin/nginx --conf-path=$2/conf/nginx.conf --error-log-path=$3/error.log --http-log-path=$3/access.log --pid-path=/run/nginx.pid --lock-path=/var/lock/nginx.lock --user=nobody --group=nobody --with-pcre --with-http_ssl_module --with-http_flv_module --with-http_stub_status_module --with-http_gzip_static_module --http-client-body-temp-path=$2/tmp/nginx/client/ --http-proxy-temp-path=$2/tmp/nginx/proxy/ --http-fastcgi-temp-path=$2/tmp/nginx/fcgi/ --http-uwsgi-temp-path=$2/tmp/nginx/uwsgi --http-scgi-temp-path=$2/tmp/nginx/scgi make &amp;&amp; make install # 创建配置管理文件 cat &gt;&gt; /lib/systemd/system/nginx. 
     </div>
     <p></p>
-    <a href="/files/nginx-install/">Read More →</a>
+    <a href="/2018/05/nginx%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC/">Read More →</a>
 </article>
 
     
@@ -206,33 +259,6 @@ server { listen 8080 default_server; # 端口自定义 server_name _; location /
         
 
 
-<section>
-    <h4>Recent Posts</h4>
-    <ol class="list-unstyled">
-        
-        <li>
-            <a href="/files/%E5%BC%80%E5%90%AFnginx&#43;phpfpm%E7%8A%B6%E6%80%81%E9%A1%B5%E9%9D%A2/">开启nginx+phpfpm状态页面</a>
-        </li>
-        
-        <li>
-            <a href="/files/phpfpm/">自定义编译安装Php-fpm</a>
-        </li>
-        
-        <li>
-            <a href="/files/nginx-install/">Nginx编译安装脚本</a>
-        </li>
-        
-        <li>
-            <a href="/files/git_clone_debug/">git clone 出现error:  while accessing https…… fatal: HTTP request failed的思路及解决</a>
-        </li>
-        
-        <li>
-            <a href="/files/">Files</a>
-        </li>
-        
-    </ol>
-</section>
-
     
     
         <section>
@@ -240,6 +266,8 @@ server { listen 8080 default_server; # 端口自定义 server_name _; location /
         
         <h4>Categories</h4>
         <p>
+            
+            <a class="badge badge-primary" href="/categories/monitor">monitor</a>
             
             <a class="badge badge-primary" href="/categories/ops">ops</a>
             
@@ -256,11 +284,15 @@ server { listen 8080 default_server; # 端口自定义 server_name _; location /
             
             <a class="badge badge-primary" href="/tags/linux">linux</a>
             
+            <a class="badge badge-primary" href="/tags/monitor">monitor</a>
+            
             <a class="badge badge-primary" href="/tags/nginx">nginx</a>
             
             <a class="badge badge-primary" href="/tags/php-fpm">php-fpm</a>
             
             <a class="badge badge-primary" href="/tags/status">status</a>
+            
+            <a class="badge badge-primary" href="/tags/zabbix">zabbix</a>
             
         </p>
         

@@ -67,7 +67,7 @@ Edgarxue&#39;s Site
                 
                 
                 <li class="nav-item ">
-                    <a class="nav-link" href="/files">Home</a>
+                    <a class="nav-link" href="/">Home</a>
                 </li>
                 
                 <li class="nav-item ">
@@ -96,7 +96,7 @@ Edgarxue&#39;s Site
     
     <div class="summary">
         <h2 class="blog-post-title">
-            <a class="text-dark" href="/files/git_clone_debug/">git clone 出现error:  while accessing https…… fatal: HTTP request failed的思路及解决</a>
+            <a class="text-dark" href="/2018/05/git-clone-%E5%87%BA%E7%8E%B0error--while-accessing-https-fatal-http-request-failed%E7%9A%84%E6%80%9D%E8%B7%AF%E5%8F%8A%E8%A7%A3%E5%86%B3/">git clone 出现error:  while accessing https…… fatal: HTTP request failed的思路及解决</a>
         </h2>
         
 
@@ -126,21 +126,18 @@ Edgarxue&#39;s Site
 <div class="blog-post-categories text-secondary">
     <strong>Categories:</strong>
     
-        <a class="badge badge-info" href="/categories/ops">Ops</a>
+        <a class="badge badge-primary" href="/categories/ops">Ops</a>
     
 </div>
 
 
     
-       环境：Centos 6.5
-git版本： 1.7.1
- 瞎逛github的时候发现cloudflare有个alertmanager的皮unsee，就准备搞下来试试，竟然遇到如下错误：
-# git clone -vvvvv https://github.com/cloudflare/unsee.git Initialized empty Git repository in /home/wenba/go/unsee/.git/ error: while accessing https://github.com/cloudflare/unsee.git/info/refs fatal: HTTP request failed  赶紧搜了一下解决办法，网上一众大神都说要升级git……简直💊啊，如此伤筋动骨，我表示不服……
-那就一步一步的来解决吧！
-首先验证下是不是网络问题吧 # wget https://github.com/cloudflare/unsee.git --2018-05-04 11:17:05-- https://github.com/cloudflare/unsee.git Resolving github.com... 13.229.188.59, 13.250.177.223, 52.74.223.119 Connecting to github.com|13.229.188.59|:443... connected. HTTP request sent, awaiting response... 301 Moved Permanently Location: https://github.com/cloudflare/unsee [following] --2018-05-04 11:17:06-- https://github.com/cloudflare/unsee Reusing existing connection to github.com:443. HTTP request sent, awaiting response... 200 OK ……  网络可达，排除墙的问题。 
+       基本环境  环境：Centos 6.5 git版本： 1.7.1  瞎逛github的时候发现cloudflare有个alertmanager的皮unsee，就准备搞下来试试，竟然遇到如下错误：
+# git clone -vvvvv https://github.com/cloudflare/unsee.git Initialized empty Git repository in /home/wenba/go/unsee/.git/ error: while accessing https://github.com/cloudflare/unsee.git/info/refs fatal: HTTP request failed  赶紧搜了一下解决办法，网上一众大神都说要升级git……简直💊啊，如此伤筋动骨，简直不能忍！
+墙？简单验证下 # wget https://github.com/cloudflare/unsee.git --2018-05-04 11:17:05-- https://github.com/cloudflare/unsee.git Resolving github.com... 13.229.188.59, 13.250.177.223, 52.74.223.119 Connecting to github.com|13.229.188.59|:443... connected. HTTP request sent, awaiting response... 301 Moved Permanently Location: https://github.com/cloudflare/unsee [following] --2018-05-04 11:17:06-- https://github.com/cloudflare/unsee Reusing existing connection to github.com:443. HTTP request sent, awaiting response... 200 OK ……  网络可达，排除! 
     </div>
     <p></p>
-    <a href="/files/git_clone_debug/">Read More →</a>
+    <a href="/2018/05/git-clone-%E5%87%BA%E7%8E%B0error--while-accessing-https-fatal-http-request-failed%E7%9A%84%E6%80%9D%E8%B7%AF%E5%8F%8A%E8%A7%A3%E5%86%B3/">Read More →</a>
 </article>
 
     
@@ -158,33 +155,6 @@ git版本： 1.7.1
         
 
 
-<section>
-    <h4>Recent Posts</h4>
-    <ol class="list-unstyled">
-        
-        <li>
-            <a href="/files/%E5%BC%80%E5%90%AFnginx&#43;phpfpm%E7%8A%B6%E6%80%81%E9%A1%B5%E9%9D%A2/">开启nginx+phpfpm状态页面</a>
-        </li>
-        
-        <li>
-            <a href="/files/phpfpm/">自定义编译安装Php-fpm</a>
-        </li>
-        
-        <li>
-            <a href="/files/nginx-install/">Nginx编译安装脚本</a>
-        </li>
-        
-        <li>
-            <a href="/files/git_clone_debug/">git clone 出现error:  while accessing https…… fatal: HTTP request failed的思路及解决</a>
-        </li>
-        
-        <li>
-            <a href="/files/">Files</a>
-        </li>
-        
-    </ol>
-</section>
-
     
     
         <section>
@@ -192,6 +162,8 @@ git版本： 1.7.1
         
         <h4>Categories</h4>
         <p>
+            
+            <a class="badge badge-primary" href="/categories/monitor">monitor</a>
             
             <a class="badge badge-primary" href="/categories/ops">ops</a>
             
@@ -208,11 +180,15 @@ git版本： 1.7.1
             
             <a class="badge badge-primary" href="/tags/linux">linux</a>
             
+            <a class="badge badge-primary" href="/tags/monitor">monitor</a>
+            
             <a class="badge badge-primary" href="/tags/nginx">nginx</a>
             
             <a class="badge badge-primary" href="/tags/php-fpm">php-fpm</a>
             
             <a class="badge badge-primary" href="/tags/status">status</a>
+            
+            <a class="badge badge-primary" href="/tags/zabbix">zabbix</a>
             
         </p>
         

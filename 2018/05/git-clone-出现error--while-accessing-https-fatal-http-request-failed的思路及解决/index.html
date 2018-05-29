@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="git clone 出现error:  while accessing https…… fatal: HTTP request failed的思路及解决" />
+<meta property="og:description" content="基本环境  环境：Centos 6.5 git版本： 1.7.1  瞎逛github的时候发现cloudflare有个alertmanager的皮unsee，就准备搞下来试试，竟然遇到如下错误：
+# git clone -vvvvv https://github.com/cloudflare/unsee.git Initialized empty Git repository in /home/wenba/go/unsee/.git/ error: while accessing https://github.com/cloudflare/unsee.git/info/refs fatal: HTTP request failed  赶紧搜了一下解决办法，网上一众大神都说要升级git……简直💊啊，如此伤筋动骨，简直不能忍！
+墙？简单验证下 # wget https://github.com/cloudflare/unsee.git --2018-05-04 11:17:05-- https://github.com/cloudflare/unsee.git Resolving github.com... 13.229.188.59, 13.250.177.223, 52.74.223.119 Connecting to github.com|13.229.188.59|:443... connected. HTTP request sent, awaiting response... 301 Moved Permanently Location: https://github.com/cloudflare/unsee [following] --2018-05-04 11:17:06-- https://github.com/cloudflare/unsee Reusing existing connection to github.com:443. HTTP request sent, awaiting response... 200 OK ……  网络可达，排除!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://edgarxue.github.io/2018/05/git-clone-%E5%87%BA%E7%8E%B0error--while-accessing-https-fatal-http-request-failed%E7%9A%84%E6%80%9D%E8%B7%AF%E5%8F%8A%E8%A7%A3%E5%86%B3/" />
+
+
+
+<meta property="article:published_time" content="2018-05-04T16:11:57&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-05-04T16:11:57&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="git clone 出现error:  while accessing https…… fatal: HTTP request failed的思路及解决"/>
+<meta name="twitter:description" content="基本环境  环境：Centos 6.5 git版本： 1.7.1  瞎逛github的时候发现cloudflare有个alertmanager的皮unsee，就准备搞下来试试，竟然遇到如下错误：
+# git clone -vvvvv https://github.com/cloudflare/unsee.git Initialized empty Git repository in /home/wenba/go/unsee/.git/ error: while accessing https://github.com/cloudflare/unsee.git/info/refs fatal: HTTP request failed  赶紧搜了一下解决办法，网上一众大神都说要升级git……简直💊啊，如此伤筋动骨，简直不能忍！
+墙？简单验证下 # wget https://github.com/cloudflare/unsee.git --2018-05-04 11:17:05-- https://github.com/cloudflare/unsee.git Resolving github.com... 13.229.188.59, 13.250.177.223, 52.74.223.119 Connecting to github.com|13.229.188.59|:443... connected. HTTP request sent, awaiting response... 301 Moved Permanently Location: https://github.com/cloudflare/unsee [following] --2018-05-04 11:17:06-- https://github.com/cloudflare/unsee Reusing existing connection to github.com:443. HTTP request sent, awaiting response... 200 OK ……  网络可达，排除!"/>
+
+
+
+    <link rel="canonical" href="http://edgarxue.github.io/2018/05/git-clone-%E5%87%BA%E7%8E%B0error--while-accessing-https-fatal-http-request-failed%E7%9A%84%E6%80%9D%E8%B7%AF%E5%8F%8A%E8%A7%A3%E5%86%B3/">
+
+    <title>
+      
+        git clone 出现error:  while accessing https…… fatal: HTTP request failed的思路及解决 | Edgarxue&#39;s Site
+      
+    </title>
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+
+    <link href="http://edgarxue.github.io/css/style.css" rel="stylesheet">
+
+    
+    
+    
+  </head>
+  <body>
+    
+      <header class="blog-header">
+
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+	   <a class="navbar-brand" href="/">
+		    <img src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+Edgarxue&#39;s Site
+
+
+        </a>
+        
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+                
+                
+                <li class="nav-item ">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                
+                <li class="nav-item ">
+                    <a class="nav-link" href="/about/">About</a>
+                </li>
+                
+            </ul>
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-lg-8 blog-main">
+
+          
+
+<header>
+    <h2 class="blog-post-title">
+        <a class="text-dark" href="/2018/05/git-clone-%E5%87%BA%E7%8E%B0error--while-accessing-https-fatal-http-request-failed%E7%9A%84%E6%80%9D%E8%B7%AF%E5%8F%8A%E8%A7%A3%E5%86%B3/">git clone 出现error:  while accessing https…… fatal: HTTP request failed的思路及解决</a>
+    </h2>
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        May 4, 2018
+    
+    
+        by <span rel="author">edgarxue</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="badge badge-primary" href="/tags/git">Git</a>
+    
+        <a class="badge badge-primary" href="/tags/centos">CentOS</a>
+    
+        <a class="badge badge-primary" href="/tags/linux">Linux</a>
+    
+</div>
+
+    
+<div class="blog-post-categories text-secondary">
+    <strong>Categories:</strong>
+    
+        <a class="badge badge-primary" href="/categories/ops">Ops</a>
+    
+</div>
+
+
+    <hr>
+</header>
+<article class="blog-post">
+    <div id="toc" class="well col-md-8 col-sm-6">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#基本环境">基本环境</a></li>
+<li><a href="#墙-简单验证下">墙？简单验证下</a></li>
+<li><a href="#git设置-关闭http-sslverify试下">git设置？关闭http.sslVerify试下</a></li>
+<li><a href="#不管是不是-试了才知道">不管是不是，试了才知道！</a></li>
+<li><a href="#总结一下">总结一下</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+    
+
+<p><img src="https://raw.githubusercontent.com/edgarxue/Picture/master/git-clone.jpg"  height="600" width="800"></p>
+
+<h2 id="基本环境">基本环境</h2>
+
+<ul>
+<li>环境：Centos 6.5</li>
+<li>git版本： 1.7.1</li>
+</ul>
+
+<hr />
+
+<p>瞎逛github的时候发现<a href="https://github.com/cloudflare">cloudflare</a>有个alertmanager的皮<strong>unsee</strong>，就准备搞下来试试，竟然遇到如下错误：</p>
+
+<pre><code class="language-shell"># git clone -vvvvv https://github.com/cloudflare/unsee.git
+Initialized empty Git repository in /home/wenba/go/unsee/.git/
+error:  while accessing https://github.com/cloudflare/unsee.git/info/refs
+
+fatal: HTTP request failed
+</code></pre>
+
+<p>赶紧搜了一下解决办法，网上一众大神都说要升级git……简直💊啊，如此伤筋动骨，简直不能忍！</p>
+
+<hr />
+
+<h2 id="墙-简单验证下">墙？简单验证下</h2>
+
+<pre><code class="language-shell"># wget https://github.com/cloudflare/unsee.git
+--2018-05-04 11:17:05--  https://github.com/cloudflare/unsee.git
+
+Resolving github.com... 13.229.188.59, 13.250.177.223, 52.74.223.119
+
+Connecting to github.com|13.229.188.59|:443... connected.
+
+HTTP request sent, awaiting response... 301 Moved Permanently
+
+Location: https://github.com/cloudflare/unsee [following]
+
+--2018-05-04 11:17:06--  https://github.com/cloudflare/unsee
+
+Reusing existing connection to github.com:443.
+
+HTTP request sent, awaiting response... 200 OK
+……
+</code></pre>
+
+<p>网络可达，排除!</p>
+
+<hr />
+
+<h2 id="git设置-关闭http-sslverify试下">git设置？关闭http.sslVerify试下</h2>
+
+<pre><code class="language-shell"># git config --system http.sslVerify false
+</code></pre>
+
+<p>再试，问题依旧，排除！</p>
+
+<hr />
+
+<p>反思下：</p>
+
+<blockquote>
+<p>git clone 简单说就是一个copy的过程，
+只不过这个过程使用了https协议……等等……<br />
+是不是https的锅呢？</p>
+</blockquote>
+
+<hr />
+
+<h2 id="不管是不是-试了才知道">不管是不是，试了才知道！</h2>
+
+<p>先检查包齐不齐吧！</p>
+
+<pre><code class="language-bash">yum list|grep -E &quot;^openssl\.x86|^nss\.x86|ca-certificates&quot;
+ca-certificates.noarch                      2013.1.94-65.0.el6           @anaconda-CentOS-201311272149.x86_64/6.5
+nss.x86_64                                  3.15.1-15.el6                @anaconda-CentOS-201311272149.x86_64/6.5
+openssl.x86_64                              1.0.1e-30.el6_6.5            @updates
+ca-certificates.noarch                      2017.2.14-65.0.1.el6_9       updates
+nss.x86_64                                  3.28.4-4.el6_9               updates
+openssl.x86_64                              1.0.1e-57.el6                base
+</code></pre>
+
+<p>13年的包……简直可怕……升级试下</p>
+
+<pre><code class="language-bash">yum update ca-certificates nss openssl openssl-devel -y
+</code></pre>
+
+<p>再试一下</p>
+
+<pre><code class="language-bash"># git clone https://github.com/cloudflare/unsee.git
+Initialized empty Git repository in /data/devops/unsee/.git/
+remote: Counting objects: 5469, done.
+remote: Compressing objects: 100% (58/58), done
+……
+</code></pre>
+
+<hr />
+
+<h2 id="总结一下">总结一下</h2>
+
+<ul>
+<li>解决问题最迅速的办法是网上搜解决思路；</li>
+<li>不要迷信别人的解决办法；</li>
+<li>不要轻易改变生产环境；</li>
+</ul>
+
+    
+
+
+</article>
+
+
+
+        </div>
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+    
+    
+        <section>
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/categories/monitor">monitor</a>
+            
+            <a class="badge badge-primary" href="/categories/ops">ops</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/tags/centos">centos</a>
+            
+            <a class="badge badge-primary" href="/tags/git">git</a>
+            
+            <a class="badge badge-primary" href="/tags/linux">linux</a>
+            
+            <a class="badge badge-primary" href="/tags/monitor">monitor</a>
+            
+            <a class="badge badge-primary" href="/tags/nginx">nginx</a>
+            
+            <a class="badge badge-primary" href="/tags/php-fpm">php-fpm</a>
+            
+            <a class="badge badge-primary" href="/tags/status">status</a>
+            
+            <a class="badge badge-primary" href="/tags/zabbix">zabbix</a>
+            
+        </p>
+        
+    
+</section>
+
+    
+</aside>
+      </div>
+    </div>
+    
+
+    
+      
+<footer class="blog-footer">
+      <div class="copyright-info">
+          <p class="text-center"><a href="#">Top</a></p>
+        <p class="text-center"><span class="h-logo">&copy; Copyright Edgarxue&#39;s Site</span></p>
+          <p class="text-center"><a href="https://github.com/edgarxue/hugo-bootstrap">hugo-bootstrap</a> modified by <a href="#">Edgarxue</a>.</p>
+      </div>
+</footer>
+
+    
+
+    
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
