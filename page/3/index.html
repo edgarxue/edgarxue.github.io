@@ -129,37 +129,6 @@ Edgarxue&#39;s Site
 
 
 
-    
-        <article class="blog-post">
-    
-    <div class="summary">
-        <h2 class="blog-post-title">
-            <a class="text-dark" href="/1/01/"></a>
-        </h2>
-        
-
-
-<div class="blog-post-date text-secondary">
-    
-    
-        by <span rel="author">edgarxue</span>
-    
-</div>
-
-        
-        
-
-    
-       #!/bin/bash # 修改主机名 hostnamectl set-hostname $1 # 关闭防火墙 systemctl stop firewalld systemctl disabled firewalld setenforce 0 sed -i 's/^SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config # 关闭swap swapoff -a sed -i 's/^\/dev\/mapper\/centos-swap/# \/dev\/mapper\/centos-swap/g' /etc/fstab # 配置yum源 cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo [kubernetes] name=Kubernetes baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/ enabled=1 gpgcheck=1 repo_gpgcheck=1 gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg EOF # 配置sysctl cat &lt;&lt;EOF &gt; /etc/sysctl.d/kubernetes.conf net.bridge.bridge-nf-call-ip6tables = 1 net.bridge.bridge-nf-call-iptables = 1 EOF #软件安装 yum install -y docker kubelet kubeadm kubectl systemctl enable docker kubelet systemctl daemon-reload systemctl restart network systemctl start docker kubelet   
-    </div>
-    <p></p>
-    <a href="/1/01/">Read More →</a>
-</article>
-
-    
-
-
-
 
 
 <nav class="blog-pagination">
