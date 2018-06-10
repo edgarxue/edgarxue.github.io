@@ -6,10 +6,21 @@
     <description>Recent content on Edgarxue&#39;s Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 29 May 2018 16:42:12 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 10 Jun 2018 16:30:34 +0800</lastBuildDate>
     
 	<atom:link href="http://edgarxue.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>K8s节点初始化配置（CentOS7）</title>
+      <link>http://edgarxue.github.io/2018/06/k8s%E8%8A%82%E7%82%B9%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AEcentos7/</link>
+      <pubDate>Sun, 10 Jun 2018 16:30:34 +0800</pubDate>
+      
+      <guid>http://edgarxue.github.io/2018/06/k8s%E8%8A%82%E7%82%B9%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AEcentos7/</guid>
+      <description>环境及说明 主机环境：CentOS 7.4
+初始化脚本  $1: 节点主机名
+ $2：节点类型（master/node） #区别在于是否安装kubeadm、kubectl  #!/bin/bash # 修改主机名 hostnamectl set-hostname $1 # 关闭防火墙 systemctl stop firewalld systemctl disabled firewalld setenforce 0 sed -i &#39;s/^SELINUX=enforcing/SELINUX=disabled/g&#39; /etc/selinux/config # 关闭swap swapoff -a sed -i &#39;s/^\/dev\/mapper\/centos-swap/# \/dev\/mapper\/centos-swap/g&#39; /etc/fstab # 配置yum源 cat &amp;lt;&amp;lt;EOF &amp;gt; /etc/yum.repos.d/kubernetes.repo [kubernetes] name=Kubernetes baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/ enabled=1 gpgcheck=1 repo_gpgcheck=1 gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg EOF # 配置sysctl cat &amp;lt;&amp;lt;EOF &amp;gt; /etc/sysctl.d/kubernetes.conf net.bridge.bridge-nf-call-ip6tables = 1 net.bridge.bridge-nf-call-iptables = 1 EOF # 软件安装 function master { yum install -y docker kubelet kubeadm kubectl } function node { yum install -y docker kubelet } # 根据选择类型安装 if [[ $2 == &amp;quot;master&amp;quot; ]] || [[ $2 = &amp;quot;node&amp;quot; ]] ;then $2 else echo &amp;quot;Unknow role type, as master to install.</description>
+    </item>
     
     <item>
       <title>Zabbix监控nginx脚本两种</title>
@@ -74,6 +85,15 @@ EX: 保存脚本为php-fpm_install.sh bash php-fpm_install.sh php.version /path/
 简而言之，一个既不激进也不保守的老运维，喜欢新技术。 这些年一直走在系统运维、自动化运维的路上，也搞过一些Docker。
 联系方式 邮箱：xzwsd@126.com
 状态 正在求职，运维。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://edgarxue.github.io/1/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://edgarxue.github.io/1/01/</guid>
+      <description>#!/bin/bash # 修改主机名 hostnamectl set-hostname $1 # 关闭防火墙 systemctl stop firewalld systemctl disabled firewalld setenforce 0 sed -i &#39;s/^SELINUX=enforcing/SELINUX=disabled/g&#39; /etc/selinux/config # 关闭swap swapoff -a sed -i &#39;s/^\/dev\/mapper\/centos-swap/# \/dev\/mapper\/centos-swap/g&#39; /etc/fstab # 配置yum源 cat &amp;lt;&amp;lt;EOF &amp;gt; /etc/yum.repos.d/kubernetes.repo [kubernetes] name=Kubernetes baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/ enabled=1 gpgcheck=1 repo_gpgcheck=1 gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg EOF # 配置sysctl cat &amp;lt;&amp;lt;EOF &amp;gt; /etc/sysctl.d/kubernetes.conf net.bridge.bridge-nf-call-ip6tables = 1 net.bridge.bridge-nf-call-iptables = 1 EOF #软件安装 yum install -y docker kubelet kubeadm kubectl systemctl enable docker kubelet systemctl daemon-reload systemctl restart network systemctl start docker kubelet  </description>
     </item>
     
   </channel>

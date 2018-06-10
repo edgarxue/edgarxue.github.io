@@ -12,7 +12,7 @@
 
 
 
-<meta property="og:updated_time" content="2018-05-29T16:42:12&#43;08:00"/>
+<meta property="og:updated_time" content="2018-06-10T16:30:34&#43;08:00"/>
 
 
 
@@ -88,6 +88,61 @@ Edgarxue&#39;s Site
 
           
 
+
+
+
+    
+        <article class="blog-post">
+    
+    <div class="summary">
+        <h2 class="blog-post-title">
+            <a class="text-dark" href="/2018/06/k8s%E8%8A%82%E7%82%B9%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AEcentos7/">K8s节点初始化配置（CentOS7）</a>
+        </h2>
+        
+
+
+<div class="blog-post-date text-secondary">
+    
+        Jun 10, 2018
+    
+    
+        by <span rel="author">edgarxue</span>
+    
+</div>
+
+        
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="badge badge-primary" href="/tags/centos">CentOS</a>
+    
+        <a class="badge badge-primary" href="/tags/k8s">K8s</a>
+    
+        <a class="badge badge-primary" href="/tags/initial">initial</a>
+    
+</div>
+
+        
+<div class="blog-post-categories text-secondary">
+    <strong>Categories:</strong>
+    
+        <a class="badge badge-primary" href="/categories/ops">Ops</a>
+    
+        <a class="badge badge-primary" href="/categories/docker">Docker</a>
+    
+</div>
+
+
+    
+       环境及说明 主机环境：CentOS 7.4
+初始化脚本  $1: 节点主机名
+ $2：节点类型（master/node） #区别在于是否安装kubeadm、kubectl  #!/bin/bash # 修改主机名 hostnamectl set-hostname $1 # 关闭防火墙 systemctl stop firewalld systemctl disabled firewalld setenforce 0 sed -i 's/^SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config # 关闭swap swapoff -a sed -i 's/^\/dev\/mapper\/centos-swap/# \/dev\/mapper\/centos-swap/g' /etc/fstab # 配置yum源 cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo [kubernetes] name=Kubernetes baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/ enabled=1 gpgcheck=1 repo_gpgcheck=1 gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg EOF # 配置sysctl cat &lt;&lt;EOF &gt; /etc/sysctl.d/kubernetes.conf net.bridge.bridge-nf-call-ip6tables = 1 net.bridge.bridge-nf-call-iptables = 1 EOF # 软件安装 function master { yum install -y docker kubelet kubeadm kubectl } function node { yum install -y docker kubelet } # 根据选择类型安装 if [[ $2 == &quot;master&quot; ]] || [[ $2 = &quot;node&quot; ]] ;then $2 else echo &quot;Unknow role type, as master to install. 
+    </div>
+    <p></p>
+    <a href="/2018/06/k8s%E8%8A%82%E7%82%B9%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AEcentos7/">Read More →</a>
+</article>
+
+    
 
 
 
@@ -197,56 +252,6 @@ server { listen 8080 default_server; # 端口自定义 server_name _; location /
 
 
 
-    
-        <article class="blog-post">
-    
-    <div class="summary">
-        <h2 class="blog-post-title">
-            <a class="text-dark" href="/2018/05/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85php-fpm/">自定义编译安装Php-fpm</a>
-        </h2>
-        
-
-
-<div class="blog-post-date text-secondary">
-    
-        May 16, 2018
-    
-    
-        by <span rel="author">edgarxue</span>
-    
-</div>
-
-        
-<div class="blog-post-tags text-secondary">
-    <strong>Tags:</strong>
-    
-        <a class="badge badge-primary" href="/tags/php-fpm">php-fpm</a>
-    
-        <a class="badge badge-primary" href="/tags/centos">CentOS</a>
-    
-</div>
-
-        
-<div class="blog-post-categories text-secondary">
-    <strong>Categories:</strong>
-    
-        <a class="badge badge-primary" href="/categories/ops">Ops</a>
-    
-</div>
-
-
-    
-       说明  基本环境为CentOS 7 编译后php-fpm由systemd管理 配置文件目录设置为安装目录下的etc  自定义编译安装php-fpm 下载想要安装的php版本 将脚本保存到和php下载包同一目录
-EX: 保存脚本为php-fpm_install.sh bash php-fpm_install.sh php.version /path/to/install  脚本 #!/bin/bash # 安装依赖包 yum -y install libjpeg libjpeg-devel libpng libpng-devel libXpm libXpm-devel freetype freetype-devel zlib zlib-devel bzip2 bzip2-devel libcurl curl-devel libmcrypt libmcrypt-devel mhash-devel libxml2 libxml2-devel openssl openssl-devel libtiff libtiff-devel gd gd-devel # configure /usr/bin/tar -xf $1.tar.gz cd $1 ./configure --prefix=$2 --with-mysql=mysqlnd --with-pdo-mysql=mysqlnd --with-gd --with-mysqli=mysqlnd --with-openssl --with-bz2 --enable-mbstring --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-curl --with-libxml-dir=/usr --with-mcrypt=/usr/local/include --with-mhash=/usr/local/include --enable-xml --enable-sockets --enable-fpm --enable-zip --enable-soap --with-mcrypt --with-config-file-path=$2/etc --with-config-file-scan-dir=$2/etc/php. 
-    </div>
-    <p></p>
-    <a href="/2018/05/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85php-fpm/">Read More →</a>
-</article>
-
-    
-
-
-
 
 
 <nav class="blog-pagination">
@@ -315,6 +320,8 @@ EX: 保存脚本为php-fpm_install.sh bash php-fpm_install.sh php.version /path/
         <h4>Categories</h4>
         <p>
             
+            <a class="badge badge-primary" href="/categories/docker">docker</a>
+            
             <a class="badge badge-primary" href="/categories/monitor">monitor</a>
             
             <a class="badge badge-primary" href="/categories/ops">ops</a>
@@ -329,6 +336,10 @@ EX: 保存脚本为php-fpm_install.sh bash php-fpm_install.sh php.version /path/
             <a class="badge badge-primary" href="/tags/centos">centos</a>
             
             <a class="badge badge-primary" href="/tags/git">git</a>
+            
+            <a class="badge badge-primary" href="/tags/initial">initial</a>
+            
+            <a class="badge badge-primary" href="/tags/k8s">k8s</a>
             
             <a class="badge badge-primary" href="/tags/linux">linux</a>
             

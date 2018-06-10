@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://edgarxue.github.io/2018/06/k8s%E8%8A%82%E7%82%B9%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AEcentos7/</loc>
+    <lastmod>2018-06-10T16:30:34+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://edgarxue.github.io/2018/05/zabbix%E7%9B%91%E6%8E%A7nginx%E8%84%9A%E6%9C%AC%E4%B8%A4%E7%A7%8D/</loc>
     <lastmod>2018-05-29T16:42:12+08:00</lastmod>
   </url>
@@ -33,25 +38,47 @@
   </url>
   
   <url>
+    <loc>http://edgarxue.github.io/1/01/</loc>
+  </url>
+  
+  <url>
     <loc>http://edgarxue.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://edgarxue.github.io/tags/centos/</loc>
-    <lastmod>2018-05-16T14:27:36+08:00</lastmod>
+    <lastmod>2018-06-10T16:30:34+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edgarxue.github.io/categories/docker/</loc>
+    <lastmod>2018-06-10T16:30:34+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://edgarxue.github.io/</loc>
-    <lastmod>2018-05-29T16:42:12+08:00</lastmod>
+    <lastmod>2018-06-10T16:30:34+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://edgarxue.github.io/tags/git/</loc>
     <lastmod>2018-05-04T16:11:57+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edgarxue.github.io/tags/initial/</loc>
+    <lastmod>2018-06-10T16:30:34+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://edgarxue.github.io/tags/k8s/</loc>
+    <lastmod>2018-06-10T16:30:34+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -81,7 +108,7 @@
   
   <url>
     <loc>http://edgarxue.github.io/categories/ops/</loc>
-    <lastmod>2018-05-29T16:42:12+08:00</lastmod>
+    <lastmod>2018-06-10T16:30:34+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -93,7 +120,7 @@
   
   <url>
     <loc>http://edgarxue.github.io/post/</loc>
-    <lastmod>2018-05-29T16:42:12+08:00</lastmod>
+    <lastmod>2018-06-10T16:30:34+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -105,7 +132,7 @@
   
   <url>
     <loc>http://edgarxue.github.io/tags/</loc>
-    <lastmod>2018-05-16T14:27:36+08:00</lastmod>
+    <lastmod>2018-06-10T16:30:34+08:00</lastmod>
     <priority>0</priority>
   </url>
   

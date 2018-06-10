@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Initial" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://edgarxue.github.io/tags/initial/" />
+
+
+
+<meta property="og:updated_time" content="2018-06-10T16:30:34&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Initial"/>
+<meta name="twitter:description" content=""/>
+
+
+
+    <link rel="canonical" href="http://edgarxue.github.io/tags/initial/">
+
+    <title>
+      
+        Initial | Edgarxue&#39;s Site
+      
+    </title>
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+
+    <link href="http://edgarxue.github.io/css/style.css" rel="stylesheet">
+
+    
+    <link href="http://edgarxue.github.io/tags/initial/index.xml" rel="alternate" type="application/rss+xml" title="Edgarxue&#39;s Site" />
+    
+    
+    
+  </head>
+  <body>
+    
+      <header class="blog-header">
+
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+	   <a class="navbar-brand" href="/">
+		    <img src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+Edgarxue&#39;s Site
+
+
+        </a>
+        
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+                
+                
+                <li class="nav-item ">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                
+                <li class="nav-item ">
+                    <a class="nav-link" href="/about/">About</a>
+                </li>
+                
+            </ul>
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-lg-8 blog-main">
+
+          
+
+
+
+
+    
+        <article class="blog-post">
+    
+    <div class="summary">
+        <h2 class="blog-post-title">
+            <a class="text-dark" href="/2018/06/k8s%E8%8A%82%E7%82%B9%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AEcentos7/">K8s节点初始化配置（CentOS7）</a>
+        </h2>
+        
+
+
+<div class="blog-post-date text-secondary">
+    
+        Jun 10, 2018
+    
+    
+        by <span rel="author">edgarxue</span>
+    
+</div>
+
+        
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="badge badge-primary" href="/tags/centos">CentOS</a>
+    
+        <a class="badge badge-primary" href="/tags/k8s">K8s</a>
+    
+        <a class="badge badge-primary" href="/tags/initial">initial</a>
+    
+</div>
+
+        
+<div class="blog-post-categories text-secondary">
+    <strong>Categories:</strong>
+    
+        <a class="badge badge-primary" href="/categories/ops">Ops</a>
+    
+        <a class="badge badge-primary" href="/categories/docker">Docker</a>
+    
+</div>
+
+
+    
+       环境及说明 主机环境：CentOS 7.4
+初始化脚本  $1: 节点主机名
+ $2：节点类型（master/node） #区别在于是否安装kubeadm、kubectl  #!/bin/bash # 修改主机名 hostnamectl set-hostname $1 # 关闭防火墙 systemctl stop firewalld systemctl disabled firewalld setenforce 0 sed -i 's/^SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config # 关闭swap swapoff -a sed -i 's/^\/dev\/mapper\/centos-swap/# \/dev\/mapper\/centos-swap/g' /etc/fstab # 配置yum源 cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo [kubernetes] name=Kubernetes baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/ enabled=1 gpgcheck=1 repo_gpgcheck=1 gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg EOF # 配置sysctl cat &lt;&lt;EOF &gt; /etc/sysctl.d/kubernetes.conf net.bridge.bridge-nf-call-ip6tables = 1 net.bridge.bridge-nf-call-iptables = 1 EOF # 软件安装 function master { yum install -y docker kubelet kubeadm kubectl } function node { yum install -y docker kubelet } # 根据选择类型安装 if [[ $2 == &quot;master&quot; ]] || [[ $2 = &quot;node&quot; ]] ;then $2 else echo &quot;Unknow role type, as master to install. 
+    </div>
+    <p></p>
+    <a href="/2018/06/k8s%E8%8A%82%E7%82%B9%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AEcentos7/">Read More →</a>
+</article>
+
+    
+
+
+
+
+
+
+
+
+        </div>
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+    
+    
+        <section>
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/categories/docker">docker</a>
+            
+            <a class="badge badge-primary" href="/categories/monitor">monitor</a>
+            
+            <a class="badge badge-primary" href="/categories/ops">ops</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/tags/centos">centos</a>
+            
+            <a class="badge badge-primary" href="/tags/git">git</a>
+            
+            <a class="badge badge-primary" href="/tags/initial">initial</a>
+            
+            <a class="badge badge-primary" href="/tags/k8s">k8s</a>
+            
+            <a class="badge badge-primary" href="/tags/linux">linux</a>
+            
+            <a class="badge badge-primary" href="/tags/monitor">monitor</a>
+            
+            <a class="badge badge-primary" href="/tags/nginx">nginx</a>
+            
+            <a class="badge badge-primary" href="/tags/php-fpm">php-fpm</a>
+            
+            <a class="badge badge-primary" href="/tags/status">status</a>
+            
+            <a class="badge badge-primary" href="/tags/zabbix">zabbix</a>
+            
+        </p>
+        
+    
+</section>
+
+    
+</aside>
+      </div>
+    </div>
+    
+
+    
+      
+<footer class="blog-footer">
+      <div class="copyright-info">
+          <p class="text-center"><a href="#">Top</a></p>
+        <p class="text-center"><span class="h-logo">&copy; Copyright Edgarxue&#39;s Site</span></p>
+          <p class="text-center"><a href="https://github.com/edgarxue/hugo-bootstrap">hugo-bootstrap</a> modified by <a href="#">Edgarxue</a>.</p>
+      </div>
+</footer>
+
+    
+
+    
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

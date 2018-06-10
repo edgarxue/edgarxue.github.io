@@ -11,6 +11,15 @@
     
     
     <item>
+      <title>Docker</title>
+      <link>http://edgarxue.github.io/categories/docker/</link>
+      <pubDate>Sun, 10 Jun 2018 16:30:34 +0800</pubDate>
+      
+      <guid>http://edgarxue.github.io/categories/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Monitor</title>
       <link>http://edgarxue.github.io/categories/monitor/</link>
       <pubDate>Tue, 29 May 2018 16:42:12 +0800</pubDate>
@@ -22,7 +31,7 @@
     <item>
       <title>Ops</title>
       <link>http://edgarxue.github.io/categories/ops/</link>
-      <pubDate>Tue, 29 May 2018 16:42:12 +0800</pubDate>
+      <pubDate>Sun, 10 Jun 2018 16:30:34 +0800</pubDate>
       
       <guid>http://edgarxue.github.io/categories/ops/</guid>
       <description></description>
